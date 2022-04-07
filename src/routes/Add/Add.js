@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const CreateHouseForm = () => {
+const Add = () => {
 
   const [location, setLocation] = useState('')
   const [imageUrl, setimageUrl] = useState('')
@@ -28,10 +28,8 @@ const CreateHouseForm = () => {
   
 
   return (
-
-    <div>
-      <form onSubmit={handleSubmit}>
-       <label>Location</label>
+   <form onSubmit={handleSubmit}>
+     <label>Location</label>
        <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
 
        <label>Description</label>
@@ -52,11 +50,8 @@ const CreateHouseForm = () => {
        <button>Submit</button>
     
 
-      </form>
-      
-    </div>
-   
+   </form>
   )
 }
 
-export default CreateHouseForm
+export default Add
