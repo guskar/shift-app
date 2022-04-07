@@ -29,7 +29,7 @@ const CreateHouseForm = () => {
 
   return (
 
-    <div>
+    <div>  
       <form onSubmit={handleSubmit}>
        <label>Location</label>
        <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} />

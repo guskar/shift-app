@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import HouseCard from "../../components/HouseCard/HouseCard.js"
 
 const Home = () => {
   const [houses, setHouses] = useState([])
 
+ useEffect(() => {
   const fetcher = async () => {
     const response = await fetch('http://localhost:8081/api/v1/houses/', {
       method: 'GET',
@@ -15,24 +17,21 @@ const Home = () => {
       const houses = await response.json()
       setHouses(houses)
     }
+      
   }
-  console.log(houses)
+  fetcher();
+ }, [])
+  
   
   return (
    
-    <div>
+    <div id= 'houseDiv'>
        {houses.map((house) => (
         <div key={house.id}>
-          <h3>{house.location}</h3>
-          <h5>{house.description}</h5>
-          <h5>{house.pool? 'pool' : ''}</h5>
-          <h5>{house.wifi? 'wifi': ''}</h5>
-          <h5>{house.tv? 'tv': ''}</h5>
-
+          <HouseCard house={house}></HouseCard>
         </div>
       ))}
 
-        <button onClick={fetcher}>Show houses</button>
     </div>
   )
 }
