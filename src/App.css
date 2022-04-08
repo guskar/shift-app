@@ -1,14 +1,14 @@
 
 a {
   text-decoration: none;
-  color: lightgrey;
+  color: rgb(44, 42, 42);
 }
 
 #houseDiv{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content:flex-start;
   gap: 5px;
   
 }

@@ -4,15 +4,15 @@ import styles from './style.module.css'
 
 const LoginForm = () => {
 
-  const [userName, setUsername] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const body = {userName, password};
+    const body = {username, password};
 
     
-    await fetch('http://localhost:8080/api/v1/login/', {
+    const response = await fetch('http://localhost:8080/api/v1/login/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -20,6 +20,8 @@ const LoginForm = () => {
       body: JSON.stringify(body)
     })
 
+    const data = await response.json()
+    console.log(data)
 
   }
 
@@ -27,10 +29,10 @@ const LoginForm = () => {
     <form onSubmit={handleSubmit} className={styles.loginForm}>
 
       <label>Username</label>
-      <input type="Password" value={userName} onChange={(e) => setUsername(e.target.value)} />
+      <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
 
-      <label>Description</label>
-      <input type="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <label>Password</label>
+      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
       <button>Submit</button>
 
