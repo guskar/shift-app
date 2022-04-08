@@ -5,6 +5,7 @@ import NavBar from './components/NavBar/NavBar';
 import Home from './routes/Home/Home';
 import Add from './routes/Add/Add';
 import Login from './routes/Login/Login';
+import Register from './routes/Register/Register';
 
 function App() {
  
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />}/>
         <Route path="add" element={<Add />}/>
         <Route path="login" element={<Login />}/>
+        <Route path="register" element={<Register />}/>
       </Routes>
     </div>
   );
