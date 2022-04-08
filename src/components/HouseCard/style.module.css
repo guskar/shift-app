@@ -1,5 +1,6 @@
 .houseCard{
  max-width: 250px;
+ height: auto;
   padding: 5px;
   border-radius: 5px;
   box-shadow: 5px 5px 11px -2px #000000;

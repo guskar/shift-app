@@ -1,7 +1,6 @@
 .houseForm{
   display: flex;
   flex-direction: column;
-  border: 1px black solid;
   justify-content: flex-start;
   min-width: fit-content;
  

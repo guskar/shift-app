@@ -14,12 +14,26 @@ const CreateHouseForm = () => {
     event.preventDefault();
     const body = {location, imageUrl, description, hasPool, hasWifi, hasTv};
 
+    function getCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for(var i=0;i < ca.length;i++) {
+          var c = ca[i];
+          while (c.charAt(0)===' ') c = c.substring(1,c.length);
+          if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
+      }
+      return null;
+  }
+  const cookie = getCookie('cookie')
+
+    // let cookie = document.cookie.split(';');
+    
     
     await fetch('http://localhost:8081/api/v1/houses/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJndXJrYW4iLCJnaXZlbl9uYW1lIjoiR3VzdGF2IiwiZmFtaWx5X25hbWUiOiJLYXJsYmVyZyIsImVtYWlsIjoiZ2hqa2doZ2prMkBzdHVkZW50LmxudS5zZSIsImlhdCI6MTY0OTM5OTQzNSwiZXhwIjoxNjQ5NDM1NDM1fQ.f6eXVNIqxWtYSkurKXwWilcK9bj6-J5hmR7g7tYEcboh0E5G9iTUcUHs_0ymOBXtWHQVwk4P4hhKL7DgyaeAbtesr8BV1p9NNPpAxBOJEHhTor_TvMnJvxcl_pnwtkjDXXf7iwGsZsheMDSq__OKy-EcqGWTW9IbIdRa8iL8FhXhnxCmQhNWJ95fSIMzd17I0m5D7_WrMTyczo-lSJrMOrTPf_XlaFySOCWK8Oq2J96HhNB1PR4TrVCPWAY28rL4j9dVtaFGY0y6hiYSWRaqEuBp-bxkyN1g17i5RdhhjvWLXw0msn8ieDBfDzLMUTFkobigDVaZIlXPWlQWIR_yOA'
+        'Authorization': `Bearer ${cookie}`
       },
       body: JSON.stringify(body)
     })
