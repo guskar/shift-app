@@ -1,18 +1,21 @@
 import React from 'react'
 import { useState } from 'react'
 import styles from './style.module.css'
+import { saveAccessToken } from '../../utils/auth'
+import { useNavigate } from 'react-router'
 
 const LoginForm = () => {
-
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [loginFailed, setLoginFailed] = useState(false)
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const body = { username, password };
+    setLoginFailed(false)
 
-
-    const response = await fetch('http://localhost:8080/api/v1/login/', {
+    const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -21,35 +24,15 @@ const LoginForm = () => {
     })
 
     const data = await response.json()
-    console.log(data.access_token)
+    console.log("data.accesstoken", data.access_token)
 
-    function setCookie(name,value,days) {
-      var expires = "";
-      if (days) {
-          var date = new Date();
-          date.setTime(date.getTime() + (days*24*60*60*1000));
-          expires = "; expires=" + date.toUTCString();
-      }
-      document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-  }
-
-  setCookie('cookie', data.access_token, 1)
- 
-  function eraseCookie(name) {   
-      document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-  }
-
-    // const createCookieInHour = (cookieName, cookieValue, hourToExpire) => {
-    //   let date = new Date();
-    //   date.setTime(date.getTime() + (hourToExpire * 60 * 60 * 1000));
-    //   document.cookie = cookieName + " = " + cookieValue + "; expires = " + date.toGMTString();
-
-
-    // }
-    // createCookieInHour('acces_token', data.access_token, 5);
-    // let cookie = document.cookie.split(';');
-    // console.log('cookie : ', cookie);
-
+    if (data.access_token) {
+      saveAccessToken(data.access_token)
+      navigate('/')
+    } else {
+      setLoginFailed(true)
+     
+    }
   }
 
   return (
@@ -61,6 +44,7 @@ const LoginForm = () => {
       <label>Password</label>
       <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
+      {loginFailed && <h4>Login failed. Check your credentials!</h4>}
       <button>Submit</button>
 
     </form>

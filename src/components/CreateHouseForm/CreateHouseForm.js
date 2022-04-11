@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { getAccessToken } from '../../utils/auth'
 import styles from './style.module.css'
 
 const CreateHouseForm = () => {
@@ -14,26 +15,13 @@ const CreateHouseForm = () => {
     event.preventDefault();
     const body = {location, imageUrl, description, hasPool, hasWifi, hasTv};
 
-    function getCookie(name) {
-      var nameEQ = name + "=";
-      var ca = document.cookie.split(';');
-      for(var i=0;i < ca.length;i++) {
-          var c = ca[i];
-          while (c.charAt(0)===' ') c = c.substring(1,c.length);
-          if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
-      }
-      return null;
-  }
-  const cookie = getCookie('cookie')
-
-    // let cookie = document.cookie.split(';');
+    const accessToken = getAccessToken()
     
-    
-    await fetch('http://localhost:8081/api/v1/houses/', {
+    await fetch('https://cscloud8-44.lnu.se/shift/api/v1/houses', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${cookie}`
+        'Authorization': `Bearer ${accessToken}`
       },
       body: JSON.stringify(body)
     })

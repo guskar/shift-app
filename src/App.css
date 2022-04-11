@@ -10,5 +10,13 @@ a {
   flex-wrap: wrap;
   justify-content:flex-start;
   gap: 5px;
-  
+}
+
+#backgroundDiv{
+  width: 100%;
+  height: 100vh;
+  background-image: url("https://cdn.pixabay.com/photo/2019/01/13/11/49/iceland-3930162_960_720.jpg");
+  background-size: cover;
+  text-align: center;
+  color: white;
 }
