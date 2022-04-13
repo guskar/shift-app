@@ -6,8 +6,8 @@ import { MdWifi } from 'react-icons/md';
 const HouseCard = ({ house }) => {
 
   return (
-
-    <div className={styles.houseCard}>
+    <button>
+       <div className={styles.houseCard}>
       <img src={house.imageUrl} alt='' />
       <h3>{house.location}</h3>
       <h5>{house.description}</h5>
@@ -16,9 +16,9 @@ const HouseCard = ({ house }) => {
         <h5>{house.wifi ? <MdWifi className={styles.icons}></MdWifi> : ''}</h5>
         <h5>{house.tv ? 'tv' : ''}</h5>
       </div>
-
-
     </div>
+    </button>
+   
 
   )
 }

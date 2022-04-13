@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router'
 import { getAccessToken } from '../../utils/auth'
+import { useIsLoggedIn } from '../../utils/utilhooks'
 import styles from './style.module.css'
 
 const CreateHouseForm = () => {
-
+  const navigate = useNavigate()
+  const isLoggedIn = useIsLoggedIn()
   const [location, setLocation] = useState('')
   const [imageUrl, setimageUrl] = useState('')
   const [description, setDescription] = useState('')
@@ -12,19 +15,27 @@ const CreateHouseForm = () => {
   const [hasTv, sethasTv] = useState(false)
 
   const handleSubmit = async (event) => {
+   
     event.preventDefault();
     const body = {location, imageUrl, description, hasPool, hasWifi, hasTv};
 
     const accessToken = getAccessToken()
-    
-    await fetch('https://cscloud8-44.lnu.se/shift/api/v1/houses', {
+    // const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/houses'
+    const response = await fetch('http://localhost:8081/api/v1/houses', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${accessToken}`
       },
       body: JSON.stringify(body)
+      
     })
+   
+    if(response.status === 201) {
+     navigate('/')
+      
+    }
+    
 
 
   }
