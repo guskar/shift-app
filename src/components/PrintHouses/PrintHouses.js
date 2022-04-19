@@ -18,14 +18,6 @@ const PrintHouses = () => {
   useEffect(() => {
 
     const accessToken = getAccessToken()
-
-    // const splittedAcces = accessToken.split('.')
-    // var encodedStringAtoB = splittedAcces[1];
-    // var decodedStringAtoB = atob(encodedStringAtoB);
-    // console.log("this is the access token in json", decodedStringAtoB)
-    // const data = JSON.parse(decodedStringAtoB)
-    // setUsername(data.sub)
-    // console.log(userName)
     
 
     const fetcher = async () => {
@@ -49,7 +41,7 @@ const PrintHouses = () => {
   }, [isLoggedIn])
 
   useEffect(() => {
-    const filtered = allHouses.filter((house) => house.location.indexOf(searchFor) !== -1)
+    const filtered = allHouses.filter((house) => house.location.toLowerCase().indexOf(searchFor.toLowerCase()) !== -1)
     setFilteredHouses(filtered)
   }, [allHouses, searchFor])
 

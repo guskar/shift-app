@@ -1,5 +1,5 @@
 function setCookie(name,value,days) {
-  var expires = "";
+  let expires = "";
   if (days) {
       var date = new Date();
       date.setTime(date.getTime() + (days*24*60*60*1000));
@@ -43,4 +43,16 @@ export function getAccessToken (refresh) {
 export function removeAccessToken() {
   eraseCookie('access_token')
   refreshers.forEach(r => r(Math.random()))
+}
+
+export function getLoggedInUserName () {
+  const accessToken = getAccessToken()
+  const splittedAcces = accessToken.split('.')
+  
+  const encodedStringAtoB = splittedAcces[1];
+  const decodedStringAtoB = atob(encodedStringAtoB);
+  
+  const data = JSON.parse(decodedStringAtoB)
+
+  return data.sub
 }

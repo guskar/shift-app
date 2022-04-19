@@ -24,11 +24,11 @@ const LoginForm = () => {
     })
 
     const data = await response.json()
-    console.log("data.accesstoken", data.access_token)
+    
 
     if (data.access_token) {
       saveAccessToken(data.access_token)
-      navigate('/')
+      navigate('/profile')
     } else {
       setLoginFailed(true)
      

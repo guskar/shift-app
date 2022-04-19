@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
 import styles from './style.module.css'
 
 const RegisterForm = () => {
@@ -9,19 +10,24 @@ const RegisterForm = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const body = { username, password, firstName, lastName, email };
-    console.log('submit', body)
-
-    await fetch('http://localhost:8080/api/v1/register', {
+   
+ // const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/auth/register'
+    const response = await fetch('http://localhost:8080/api/v1/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(body)
     })
+
+    if(response.status === 201) {
+      navigate('/login')
+    }
 
   }
   return (

@@ -1,13 +1,10 @@
 
 
-import PrintHouses from "../../components/PrintHouses/PrintHouses"
-import PrintUserHouses from "../../components/PrintUserHouses/PrintUserHouses"
-
-import { useIsLoggedIn } from "../../utils/utilhooks"
+import { BsShift} from 'react-icons/bs'
 
 const Home = () => {
 
-  const isLoggedIn = useIsLoggedIn()
+ 
 
 
 
@@ -15,21 +12,13 @@ const Home = () => {
   return (
 
     <div id='houseDiv'>
-      {!isLoggedIn && <div id='backgroundDiv'>
-        <h1>Shift-Make a change today</h1>
-      </div>}
-
-      {!isLoggedIn && <h2>Your should register!</h2>}
-
-      <div>
-        {isLoggedIn && <PrintHouses></PrintHouses>}
+      <div id='backgroundDiv'>
+        <h1>Sh<BsShift></BsShift>fT-Make a change today</h1>
       </div>
 
-      <div>
-        <h1>Userhouses</h1>
-        {isLoggedIn && <PrintUserHouses></PrintUserHouses>}
-      </div>
+      <h2>Your should register!</h2>
 
+      
 
     </div>
   )

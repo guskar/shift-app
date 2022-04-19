@@ -16,10 +16,10 @@ const PrintUserHouses = () => {
     const splittedAcces = accessToken.split('.')
     var encodedStringAtoB = splittedAcces[1];
     var decodedStringAtoB = atob(encodedStringAtoB);
-    console.log("this is the access token in json", decodedStringAtoB)
+    
     const data = JSON.parse(decodedStringAtoB)
     setUsername(data.sub)
-    console.log(userName)
+    
     
 
     const fetcher = async () => {
@@ -48,7 +48,7 @@ const PrintUserHouses = () => {
   }, [allHouses, userName])
 
 
-
+console.log('filtered houses',filteredHouses )
 
   return (
     <div className={styles.houseDiv}>

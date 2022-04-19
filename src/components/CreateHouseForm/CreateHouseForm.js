@@ -28,11 +28,11 @@ const CreateHouseForm = () => {
         'Authorization': `Bearer ${accessToken}`
       },
       body: JSON.stringify(body)
-      
     })
    
     if(response.status === 201) {
      navigate('/')
+     
       
     }
     

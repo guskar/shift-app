@@ -11,6 +11,11 @@ a {
   justify-content:flex-start;
   gap: 5px;
 }
+/* #houseDiv{
+  display: grid;
+ grid-template-columns: 1fr 1fr;
+  gap: 5px;
+} */
 
 #backgroundDiv{
   width: 100%;
