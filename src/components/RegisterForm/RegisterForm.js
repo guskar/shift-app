@@ -10,6 +10,7 @@ const RegisterForm = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
+  const [registerFailed, setRegisterFailed] = useState(false)
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -27,6 +28,8 @@ const RegisterForm = () => {
 
     if(response.status === 201) {
       navigate('/login')
+    } else {
+      setRegisterFailed(true)
     }
 
   }
@@ -47,7 +50,7 @@ const RegisterForm = () => {
       <label>email</label>
       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 
-
+      {registerFailed && <h4>Failed to register new user, make sure every inputfiled is filled in!</h4>}
 
       <button>Submit</button>
 

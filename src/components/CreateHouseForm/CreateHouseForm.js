@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { getAccessToken } from '../../utils/auth'
-import { useIsLoggedIn } from '../../utils/utilhooks'
 import styles from './style.module.css'
 
 const CreateHouseForm = () => {
   const navigate = useNavigate()
-  const isLoggedIn = useIsLoggedIn()
   const [location, setLocation] = useState('')
   const [imageUrl, setimageUrl] = useState('')
   const [description, setDescription] = useState('')
   const [hasPool, sethasPool] = useState(false)
   const [hasWifi, sethasWifi] = useState(false)
   const [hasTv, sethasTv] = useState(false)
+  const [createHouseFailed, setCreateHouseFailed] = useState(false)
 
   const handleSubmit = async (event) => {
    
@@ -31,9 +30,10 @@ const CreateHouseForm = () => {
     })
    
     if(response.status === 201) {
-     navigate('/')
-     
-      
+     navigate('/profile')
+       
+    } else {
+      setCreateHouseFailed(true)
     }
     
 
@@ -63,7 +63,11 @@ const CreateHouseForm = () => {
        <label>Tv</label>
        <input type="checkbox" value='Tv' checked={hasTv} onChange={(e) => sethasTv(!hasTv)}/>
 
+       {createHouseFailed && <h4>Create house failed. Make sure every inputfield is filled in!</h4>}
+
        <button>Submit</button>
+
+       
     
 
       </form>

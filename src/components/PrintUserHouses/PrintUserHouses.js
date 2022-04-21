@@ -48,7 +48,7 @@ const PrintUserHouses = () => {
   }, [allHouses, userName])
 
 
-console.log('filtered houses',filteredHouses )
+
 
   return (
     <div className={styles.houseDiv}>
