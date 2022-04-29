@@ -13,10 +13,10 @@ const Home = () => {
 
     <div id='houseDiv'>
       <div id='backgroundDiv'>
-        <h1>Sh<BsShift></BsShift>fT-Make a change today</h1>
+        <h1>Sh<BsShift></BsShift>fT - Make a change today</h1>
       </div>
 
-      <h2>Your should register!</h2>
+      <h2>You should register!</h2>
 
       
 

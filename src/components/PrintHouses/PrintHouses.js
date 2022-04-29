@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getAccessToken } from '../../utils/auth'
+import { getAccessToken, getLoggedInUserName } from '../../utils/auth'
 import { useIsLoggedIn } from '../../utils/utilhooks'
 import HouseCard from '../HouseCard/HouseCard'
 import styles from './style.module.css'
@@ -19,10 +19,9 @@ const PrintHouses = () => {
 
     const accessToken = getAccessToken()
     
-
+    // 'http://localhost:8081/api/v1/houses'
     const fetcher = async () => {
-      // const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/houses'
-      const response = await fetch('http://localhost:8081/api/v1/houses', {
+      const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/houses', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${accessToken}`
@@ -53,7 +52,7 @@ const PrintHouses = () => {
 
       {filteredHouses.map((house) => (
         <div key={house.id}>
-          <HouseCard house={house}></HouseCard>
+          {house.owner !== getLoggedInUserName() && <HouseCard house={house}></HouseCard>}
         </div>
       ))}
     </div>

@@ -16,9 +16,11 @@ const RegisterForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const body = { username, password, firstName, lastName, email };
+
+    // 'http://localhost:8080/api/v1/register'
    
- // const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/auth/register'
-    const response = await fetch('http://localhost:8080/api/v1/register', {
+ 
+    const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -36,23 +38,23 @@ const RegisterForm = () => {
   return (
     <form onSubmit={handleSubmit} className={styles.registerForm}>
       <label>Username</label>
-      <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+      <input type="text" value={username} className={styles.input} onChange={(e) => setUsername(e.target.value)} />
 
       <label>Password</label>
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <input type="password" value={password} className={styles.input} onChange={(e) => setPassword(e.target.value)} />
 
       <label>First name</label>
-      <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+      <input type="text" value={firstName} className={styles.input} onChange={(e) => setFirstName(e.target.value)} />
 
       <label>Last name</label>
-      <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+      <input type="text" value={lastName} className={styles.input} onChange={(e) => setLastName(e.target.value)} />
 
       <label>email</label>
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <input type="email" value={email} className={styles.input} onChange={(e) => setEmail(e.target.value)} />
 
       {registerFailed && <h4>Failed to register new user, make sure every inputfiled is filled in!</h4>}
 
-      <button>Submit</button>
+      <button className={styles.button}>Submit</button>
 
 
     </form>

@@ -8,7 +8,7 @@
 }
 
 
-img{
+.img{
   max-width: 100%;
   border-radius: 5px;
 }
@@ -23,11 +23,11 @@ img{
   font-size: 20px;
 }
 
-button{
+.button{
   border: none;
 }
 
-button:hover{
+.button:hover{
   cursor:pointer;
   box-shadow: 5px 5px 11px -2px #000000;
   transform: scale(1.03);

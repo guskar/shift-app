@@ -18,13 +18,13 @@ const CreateHouseForm = () => {
     event.preventDefault();
     const body = {location, imageUrl, description, hasPool, hasWifi, hasTv};
 
-    const accessToken = getAccessToken()
-    // const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/houses'
-    const response = await fetch('http://localhost:8081/api/v1/houses', {
+    // 'http://localhost:8081/api/v1/houses'
+    
+    const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/houses', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${accessToken}`
+        'Authorization': `Bearer ${getAccessToken()}`
       },
       body: JSON.stringify(body)
     })
@@ -44,7 +44,10 @@ const CreateHouseForm = () => {
   return (
 
     
-      <form onSubmit={handleSubmit} className={styles.houseForm}>
+      
+
+       
+    <form onSubmit={handleSubmit} className={styles.houseForm}>
        <label>Location</label>
        <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
 
@@ -66,9 +69,6 @@ const CreateHouseForm = () => {
        {createHouseFailed && <h4>Create house failed. Make sure every inputfield is filled in!</h4>}
 
        <button>Submit</button>
-
-       
-    
 
       </form>
       

@@ -14,8 +14,9 @@ const LoginForm = () => {
     event.preventDefault();
     const body = { username, password };
     setLoginFailed(false)
-    // const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/auth/login'
-    const response = await fetch('http://localhost:8080/api/v1//login', {
+    // 'http://localhost:8080/api/v1//login'
+   
+    const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

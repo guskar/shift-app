@@ -12,9 +12,9 @@ const HouseCard = ({ house }) => {
   }
 
   return (
-    <button onClick={handleOnClick}>
+    <button onClick={handleOnClick} className={styles.button}>
       <div className={styles.houseCard}>
-        <img src={house.imageUrl} alt='' />
+        <img src={house.imageUrl} alt='' className={styles.img}/>
         <h3>{house.location}</h3>
         <h5>{house.description}</h5>
         <div className={styles.iconsDiv}>

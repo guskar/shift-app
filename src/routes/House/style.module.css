@@ -1,22 +1,56 @@
 .specificHouseDiv{
   display: grid;
-  grid-template-rows: 3fr 1fr auto;
+  
+}
+
+.specificHouseDiv button{
+  border-radius: 500px;
+  border: none;
+  width: 20%;
+  margin: 1rem;
+  background-color: rgb(117, 145, 69);
+  height: 40px;
+  color: lightgray;
+
 }
 
 .commentsDiv{
   width: 100%;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid lightgrey;
- 
+  gap: 1rem;
+  border: 1px solid lightgray;
+  padding: 1rem;
+  
 }
 
-.button{
-  width: 200px;
-  height: 50px;
+.commentsDiv button{
+  border-radius: 500px;
+  border: none;
+  width: 20%;
+  padding: 1rem;
+  background-color: rgb(117, 145, 69);
+  height: 40px;
+  color: lightgray;
+
+}
+.commentsDiv input{
+  min-height: 25px;
+  width: 90%;
+  border: 2px solid lightgray;
+  border-radius: 4px;
+  margin: 0.3rem;
+  padding: 5px;
+}
+
+.infoDiv{
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .img{
   width: 100%;
   border-radius: 0%;
+  
 }

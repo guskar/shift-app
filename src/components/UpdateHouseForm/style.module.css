@@ -1,16 +1,15 @@
-.loginForm{
+.formDiv{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   min-width: fit-content;
- 
+  
 }
-
-.loginForm label{
+.formDiv label{
   margin: 0.3rem;
 }
 
-.loginForm input{
+.formDiv input{
   min-height: 25px;
   width: 90%;
   border: 2px solid lightgray;
@@ -19,7 +18,7 @@
   padding: 5px;
 }
 
-.loginForm button{
+.formDiv button{
   border-radius: 500px;
   border: none;
   width: 20%;

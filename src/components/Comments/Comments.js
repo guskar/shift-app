@@ -5,7 +5,7 @@ const Comments = ({ comment, house }) => {
   return (
     <div >
       <div>
-        {comment.username === house.owner ? 'You' : comment.username}
+        {comment.username}
       </div>
       <div>
         {comment.comment}

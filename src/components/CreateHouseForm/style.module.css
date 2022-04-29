@@ -5,7 +5,26 @@
   min-width: fit-content;
  
 }
-input{
+.houseForm label{
+  margin: 0.3rem;
+}
+
+.houseForm input{
   min-height: 25px;
-  max-width: 50%;
+  width: 90%;
+  border: 2px solid lightgray;
+  border-radius: 4px;
+  margin: 0.3rem;
+  padding: 5px;
+}
+
+.houseForm button{
+  border-radius: 500px;
+  border: none;
+  width: 20%;
+  margin: 2rem;
+  background-color: rgb(117, 145, 69);
+  height: 40px;
+  color: lightgray;
+
 }

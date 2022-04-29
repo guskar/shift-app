@@ -4,6 +4,7 @@ import { getAccessToken, getLoggedInUserName } from '../../utils/auth'
 import { useNavigate } from 'react-router'
 import styles from './style.module.css'
 import Comments from '../../components/Comments/Comments'
+import UpdateHouseForm from '../../components/UpdateHouseForm/UpdateHouseForm'
 
 
 
@@ -13,6 +14,8 @@ const House = () => {
   const [conversations, setConversations] = useState({})
   const [openConversation, setOpenConversation] = useState()
   const [message, setMessage] = useState('')
+  const [showEditHouse, setShowEditHouse] = useState(false)
+  const [requestMade, setRequestMade] = useState(false)
 
   const {
     id
@@ -24,7 +27,7 @@ const House = () => {
       comment: `${getLoggedInUserName()} has made a request on this house`
     }
 
-    const response = await fetch(`http://localhost:8081/api/v1/houses/${id}/comment`, {
+    const response = await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -33,9 +36,6 @@ const House = () => {
       body: JSON.stringify(commentBody)
     })
 
-    if (response.status === 201) {
-      window.location.reload(false)
-    }
 
 
   }
@@ -45,8 +45,8 @@ const House = () => {
       conversationId: conversationId,
       comment: comment
     }
-
-    const response = await fetch(`http://localhost:8081/api/v1/houses/${id}/comment`, {
+    // `http://localhost:8081/api/v1/houses/${id}/comment`
+    const response = await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -55,17 +55,20 @@ const House = () => {
       body: JSON.stringify(commentBody)
     })
 
+    setMessage('')
+
 
   }
 
   const deleteHouse = async () => {
-    const response = await fetch(`http://localhost:8081/api/v1/houses/${id}`, {
+    // `http://localhost:8081/api/v1/houses/${id}`
+    const response = await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${getAccessToken()}`
       }
     })
-    console.log(response.status)
+
     if (response.status === 204) {
       navigate('/profile')
     }
@@ -74,18 +77,24 @@ const House = () => {
 
   }
 
+  const editHouse = () => {
+
+    setShowEditHouse(!showEditHouse)
+
+  }
+
 
 
   useEffect(() => {
-    const accessToken = getAccessToken()
+
 
     const fetcher = async () => {
+      // `http://localhost:8081/api/v1/houses/${id}`
 
-      // const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/houses'
-      const response = await fetch(`http://localhost:8081/api/v1/houses/${id}`, {
+      const response = await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${accessToken}`
+          'Authorization': `Bearer ${getAccessToken()}`
         }
       })
 
@@ -98,7 +107,7 @@ const House = () => {
           if (!_conversations[comment.conversationid]) {
             _conversations[comment.conversationid] = []
           }
-
+          setRequestMade(true)
           _conversations[comment.conversationid].push(comment)
         });
 
@@ -106,6 +115,7 @@ const House = () => {
         setHouse(json.house)
       }
     }
+
     fetcher();
   }, [id])
 
@@ -113,21 +123,31 @@ const House = () => {
 
   return (
     <div className={styles.specificHouseDiv}>
-      <img src={house.imageUrl} alt='' className={styles.img}/>
+      <img src={house.imageUrl} alt='' className={styles.img} />
 
-      <div>
-
+      <div className={styles.infoDiv}>
+        <div>
         <h1>{house.location}</h1>
         <p>{house.description}</p>
         <h2>{house.owner}</h2>
-        {house.owner !== getLoggedInUserName() && <button onClick={addComment}>
+      </div>
+
+        {(house.owner !== getLoggedInUserName() && !requestMade) && <button onClick={addComment}>
           Make request
         </button>}
-        {house.owner === getLoggedInUserName() &&
-          <button onClick={deleteHouse}>
-            Dealete house
-          </button>
-        }
+        {house.owner === getLoggedInUserName() && (
+          <div>
+            <button onClick={deleteHouse}>
+              Dealete house
+            </button>
+            <button onClick={editHouse}>
+              Edit house
+            </button>
+          </div>
+        )}
+        <div>
+          {showEditHouse && <UpdateHouseForm house={house}></UpdateHouseForm>}
+        </div>
 
       </div>
 
@@ -140,19 +160,16 @@ const House = () => {
               </div>
             ))}
             <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
-
-            <button className={styles.button} onClick={() => reply(conversationId, message)}>Send message</button>
+            <button onClick={() => reply(conversationId, message)}>Send message</button>
+            <button>Close conversation</button>
           </div>
-
         ) : (
-          <button className={styles.button} onClick={() => setOpenConversation(conversationId)}>{conversationId}</button>
+          <div>
+            <h2>Conversations</h2>
+            <button key={conversationId} onClick={() => setOpenConversation(conversationId)}>{conversationId}</button>
+          </div>
         )
-
-
       ))}
-
-
-
     </div>
   )
 }
