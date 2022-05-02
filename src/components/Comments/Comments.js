@@ -1,4 +1,4 @@
-import styles from './style.module.css'
+
 
 const Comments = ({ comment, house }) => {
   
