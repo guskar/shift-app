@@ -13,3 +13,10 @@
 .h1{
 margin-right: auto; 
 }
+
+.username{
+  background-color: rgb(117, 145, 69);
+  color: lightgray;
+  border-radius: 500px;
+  padding: 0.5rem;
+}

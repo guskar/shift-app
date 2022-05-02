@@ -18,11 +18,12 @@ const House = () => {
   const [openConversation, setOpenConversation] = useState()
   const [message, setMessage] = useState('')
   const [showEditHouse, setShowEditHouse] = useState(false)
-  const [requestMade, setRequestMade] = useState(false)
+  const [requestMade, setRequestMade] = useState()
 
   const {
     id
   } = useParams('/houses/:id')
+  
 
   const addComment = async () => {
     const commentBody = {
@@ -120,7 +121,7 @@ const House = () => {
     }
 
     fetcher();
-  }, [id])
+  }, [id, requestMade])
 
 
 

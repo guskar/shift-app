@@ -3,6 +3,7 @@ import styles from './style.module.css'
 import {  MdPool } from 'react-icons/md'
 import { MdWifi } from 'react-icons/md'
 import { useNavigate } from 'react-router'
+import { FiMonitor } from 'react-icons/fi'
 
 
 const HouseCard = ({ house }) => {
@@ -22,7 +23,7 @@ const HouseCard = ({ house }) => {
         <div className={styles.iconsDiv}>
           <h5>{house.pool ? <MdPool className={styles.icons}></MdPool> : ''}</h5>
           <h5>{house.wifi ? <MdWifi className={styles.icons}></MdWifi> : ''}</h5>
-          <h5>{house.tv ? 'tv' : ''}</h5>
+          <h5>{house.tv ? <FiMonitor className={styles.icons}></FiMonitor> : ''}</h5>
         </div>
       </div>
     </button>

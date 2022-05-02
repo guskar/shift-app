@@ -1,4 +1,16 @@
 .profileDiv{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 1fr;
+}
+
+.profileDiv h2{
+  margin: 0;
+  margin-bottom:  1rem;
+}
+
+.allHousesDiv{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
 }

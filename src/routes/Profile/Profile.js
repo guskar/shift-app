@@ -8,7 +8,7 @@ const Profile = () => {
   const isLoggedIn = useIsLoggedIn()
   return (
     <div className= {styles.profileDiv}>
-      <div>
+      <div className={styles.allHousesDiv}>
         {isLoggedIn && <PrintHouses></PrintHouses>}
       </div>
 
