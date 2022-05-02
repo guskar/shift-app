@@ -1,0 +1,16 @@
+
+.registerDiv{
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  padding: 5px;
+}
+.button{
+  border-radius: 500px;
+  border: none;
+  width: 50%;
+  margin: 2rem;
+  background-color: rgb(117, 145, 69);
+  height: 40px;
+  color: lightgray;
+}

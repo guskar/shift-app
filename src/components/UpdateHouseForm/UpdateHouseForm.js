@@ -66,7 +66,7 @@ function UpdateHouseForm({ house }) {
        <input type="text" value={location}  onChange={(e) => setLocation(e.target.value)} />
 
        <label>Description</label>
-       <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+       <textarea rows='10' onChange={(e) => setDescription(e.target.value)}>{description}</textarea>
 
        <label>ImageUrl</label>
        <input type="text" value={imageUrl} onChange={(e) => setimageUrl(e.target.value)} />

@@ -10,7 +10,7 @@ const NavBar = () => {
 
   return (
     <div className={styles.navbar}>
-       <h1>Sh<BsShift></BsShift>fT</h1>
+       <h1 className={styles.h1}>Sh<BsShift></BsShift>fT</h1>
       {!isLoggedIn && <Link to="/">Home</Link>}
       {!isLoggedIn && <Link to="/login">Login</Link>}
       {isLoggedIn ? <Link to="/logout">Logout</Link> : <Link to="/register">Register</Link>}

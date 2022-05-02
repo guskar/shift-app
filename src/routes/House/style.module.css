@@ -6,7 +6,7 @@
 .specificHouseDiv button{
   border-radius: 500px;
   border: none;
-  width: 20%;
+  width: 25%;
   margin: 1rem;
   background-color: rgb(117, 145, 69);
   height: 40px;
@@ -27,7 +27,7 @@
 .commentsDiv button{
   border-radius: 500px;
   border: none;
-  width: 20%;
+  width: 25%;
   padding: 1rem;
   background-color: rgb(117, 145, 69);
   height: 40px;
@@ -36,11 +36,15 @@
 }
 .commentsDiv input{
   min-height: 25px;
-  width: 90%;
+  width: 50%;
   border: 2px solid lightgray;
   border-radius: 4px;
   margin: 0.3rem;
   padding: 5px;
+}
+
+.commentsDiv button{
+  margin: 0;
 }
 
 .infoDiv{
@@ -53,4 +57,20 @@
   width: 100%;
   border-radius: 0%;
   
+}
+
+.buttonsDiv{
+  display: flex;
+  align-items: center;
+}
+
+
+.iconsDiv{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.icons{
+  font-size: 50px;
 }

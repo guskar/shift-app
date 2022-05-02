@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router'
 import styles from './style.module.css'
 import Comments from '../../components/Comments/Comments'
 import UpdateHouseForm from '../../components/UpdateHouseForm/UpdateHouseForm'
+import {  MdPool } from 'react-icons/md'
+import { MdWifi } from 'react-icons/md'
+import { FiMonitor } from 'react-icons/fi'
 
 
 
@@ -127,16 +130,21 @@ const House = () => {
 
       <div className={styles.infoDiv}>
         <div>
-        <h1>{house.location}</h1>
-        <p>{house.description}</p>
-        <h2>{house.owner}</h2>
-      </div>
+          <h1>{house.location}</h1>
+          <pre><p>{house.description}</p></pre>
+          <h2>{house.owner}</h2>
+          <div className={styles.iconsDiv}>
+            <h5>{house.pool ? <MdPool className={styles.icons}></MdPool> : ''}</h5>
+            <h5>{house.wifi ? <MdWifi className={styles.icons}></MdWifi> : ''}</h5>
+            <h5>{house.tv ? <FiMonitor className={styles.icons}></FiMonitor> : ''}</h5>
+          </div>
+        </div>
 
         {(house.owner !== getLoggedInUserName() && !requestMade) && <button onClick={addComment}>
           Make request
         </button>}
         {house.owner === getLoggedInUserName() && (
-          <div>
+          <div className={styles.buttonsDiv}>
             <button onClick={deleteHouse}>
               Dealete house
             </button>
@@ -164,7 +172,7 @@ const House = () => {
             <button>Close conversation</button>
           </div>
         ) : (
-          <div>
+          <div className={styles.commentsDiv}>
             <h2>Conversations</h2>
             <button key={conversationId} onClick={() => setOpenConversation(conversationId)}>{conversationId}</button>
           </div>

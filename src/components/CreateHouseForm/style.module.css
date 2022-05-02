@@ -1,15 +1,15 @@
-.houseForm{
+.formDiv{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   min-width: fit-content;
- 
+  
 }
-.houseForm label{
+.formDiv label{
   margin: 0.3rem;
 }
 
-.houseForm input{
+.formDiv input{
   min-height: 25px;
   width: 90%;
   border: 2px solid lightgray;
@@ -18,7 +18,7 @@
   padding: 5px;
 }
 
-.houseForm button{
+.formDiv button{
   border-radius: 500px;
   border: none;
   width: 20%;
@@ -26,5 +26,15 @@
   background-color: rgb(117, 145, 69);
   height: 40px;
   color: lightgray;
+
+}
+
+.formDiv textarea{
+  width: 90%;
+  border: 2px solid lightgray;
+  border-radius: 4px;
+  margin: 0.3rem;
+  padding: 5px;
+  resize: none;
 
 }

@@ -28,3 +28,13 @@
   color: lightgray;
 
 }
+
+.formDiv textarea{
+  width: 90%;
+  border: 2px solid lightgray;
+  border-radius: 4px;
+  margin: 0.3rem;
+  padding: 5px;
+  resize: none;
+
+}
