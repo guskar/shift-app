@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router'
 import styles from './style.module.css'
 import Comments from '../../components/Comments/Comments'
 import UpdateHouseForm from '../../components/UpdateHouseForm/UpdateHouseForm'
-import {  MdPool } from 'react-icons/md'
+import { MdPool } from 'react-icons/md'
 import { MdWifi } from 'react-icons/md'
 import { FiMonitor } from 'react-icons/fi'
 
@@ -30,7 +30,7 @@ const House = () => {
       comment: `${getLoggedInUserName()} has made a request on this house`
     }
 
-    const response = await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`, {
+    await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const House = () => {
       comment: comment
     }
     // `http://localhost:8081/api/v1/houses/${id}/comment`
-    const response = await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`, {
+     await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
