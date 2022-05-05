@@ -10,7 +10,7 @@
 }
 
 .houseDiv input{
-  min-height: 25px;
+  height: 2rem;
   width: 90%;
   border: 2px solid lightgray;
   border-radius: 4px;

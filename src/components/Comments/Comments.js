@@ -1,11 +1,14 @@
 
+import { getLoggedInUserName } from "../../utils/auth"
 
-const Comments = ({ comment, house }) => {
+
+const Comments = ({ comment }) => {
+ 
   
   return (
-    <div >
+    <div>
       <div>
-        {comment.username}
+        {comment.username === getLoggedInUserName() ? 'you' : comment.username}
       </div>
       <div>
         {comment.comment}

@@ -8,6 +8,9 @@ import UpdateHouseForm from '../../components/UpdateHouseForm/UpdateHouseForm'
 import { MdPool } from 'react-icons/md'
 import { MdWifi } from 'react-icons/md'
 import { FiMonitor } from 'react-icons/fi'
+import { MdBed } from 'react-icons/md'
+
+
 
 
 
@@ -18,12 +21,12 @@ const House = () => {
   const [openConversation, setOpenConversation] = useState()
   const [message, setMessage] = useState('')
   const [showEditHouse, setShowEditHouse] = useState(false)
-  const [requestMade, setRequestMade] = useState()
+  const [requestMade, setRequestMade] = useState('')
 
   const {
     id
   } = useParams('/houses/:id')
-  
+
 
   const addComment = async () => {
     const commentBody = {
@@ -31,7 +34,9 @@ const House = () => {
       comment: `${getLoggedInUserName()} has made a request on this house`
     }
 
-    await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`, {
+    // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`
+    // `http://localhost:8081/api/v1/houses/${id}/comment`
+    await fetch(`http://localhost:8081/api/v1/houses/${id}/comment`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,8 +54,9 @@ const House = () => {
       conversationId: conversationId,
       comment: comment
     }
+    // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`
     // `http://localhost:8081/api/v1/houses/${id}/comment`
-     await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`, {
+    await fetch(`http://localhost:8081/api/v1/houses/${id}/comment`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -65,8 +71,9 @@ const House = () => {
   }
 
   const deleteHouse = async () => {
+    // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`
     // `http://localhost:8081/api/v1/houses/${id}`
-    const response = await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`, {
+    const response = await fetch(`http://localhost:8081/api/v1/houses/${id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${getAccessToken()}`
@@ -94,8 +101,9 @@ const House = () => {
 
     const fetcher = async () => {
       // `http://localhost:8081/api/v1/houses/${id}`
+      // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`
 
-      const response = await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`, {
+      const response = await fetch(`http://localhost:8081/api/v1/houses/${id}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${getAccessToken()}`
@@ -121,7 +129,7 @@ const House = () => {
     }
 
     fetcher();
-  }, [id, requestMade])
+  }, [id])
 
 
 
@@ -138,16 +146,24 @@ const House = () => {
             <h5>{house.pool ? <MdPool className={styles.icons}></MdPool> : ''}</h5>
             <h5>{house.wifi ? <MdWifi className={styles.icons}></MdWifi> : ''}</h5>
             <h5>{house.tv ? <FiMonitor className={styles.icons}></FiMonitor> : ''}</h5>
+            <h5>{<MdBed className={styles.icons}></MdBed>} {house.beds}</h5>
+            <h5 className={styles.rooms}>{`Rooms: ${house.rooms}`} </h5>
           </div>
         </div>
 
-        {(house.owner !== getLoggedInUserName() && !requestMade) && <button onClick={addComment}>
-          Make request
-        </button>}
+        {(house.owner !== getLoggedInUserName() && !requestMade) && (
+          <div>
+            <button onClick={addComment}>
+              Make request
+            </button>
+            <input type="date" />
+            <input type="date" />
+          </div>
+        )}
         {house.owner === getLoggedInUserName() && (
           <div className={styles.buttonsDiv}>
             <button onClick={deleteHouse}>
-              Dealete house
+              Delete house
             </button>
             <button onClick={editHouse}>
               Edit house
@@ -156,6 +172,7 @@ const House = () => {
         )}
         <div>
           {showEditHouse && <UpdateHouseForm house={house}></UpdateHouseForm>}
+          {showEditHouse && <button onClick={() => setShowEditHouse(!showEditHouse)}>Close</button>}
         </div>
 
       </div>
@@ -170,12 +187,11 @@ const House = () => {
             ))}
             <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
             <button onClick={() => reply(conversationId, message)}>Send message</button>
-            <button>Close conversation</button>
+            <button onClick={() => setOpenConversation('')}>Close conversation</button>
           </div>
         ) : (
-          <div className={styles.commentsDiv}>
-            <h2>Conversations</h2>
-            <button key={conversationId} onClick={() => setOpenConversation(conversationId)}>{conversationId}</button>
+          <div key={conversationId} className={styles.commentsDiv}>
+            <button onClick={() => setOpenConversation(conversationId)}>{conversationId}</button>
           </div>
         )
       ))}

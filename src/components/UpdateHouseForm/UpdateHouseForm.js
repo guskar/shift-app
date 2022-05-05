@@ -39,10 +39,10 @@ function UpdateHouseForm({ house }) {
       wifi,
       tv
     }
-    
+    // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`
     // `http://localhost:8081/api/v1/houses/${id}`
    
-    const response = await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`, {
+    const response = await fetch(`http://localhost:8081/api/v1/houses/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ function UpdateHouseForm({ house }) {
        <input type="text" value={location}  onChange={(e) => setLocation(e.target.value)} />
 
        <label>Description</label>
-       <textarea rows='10' onChange={(e) => setDescription(e.target.value)}>{description}</textarea>
+       <textarea value={description} rows='10' onChange={(e) => setDescription(e.target.value)}></textarea>
 
        <label>ImageUrl</label>
        <input type="text" value={imageUrl} onChange={(e) => setimageUrl(e.target.value)} />

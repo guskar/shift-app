@@ -18,9 +18,9 @@ const RegisterForm = () => {
     const body = { username, password, firstName, lastName, email };
 
     // 'http://localhost:8080/api/v1/register'
-   
+    // 'https://cscloud8-44.lnu.se/shift/api/v1/auth/register'
  
-    const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/auth/register', {
+    const response = await fetch('http://localhost:8080/api/v1/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

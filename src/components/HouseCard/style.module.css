@@ -30,5 +30,5 @@
 .button:hover{
   cursor:pointer;
   box-shadow: 5px 5px 11px -2px #000000;
-  transform: scale(1.03);
+  transform: scale(1.01);
 }

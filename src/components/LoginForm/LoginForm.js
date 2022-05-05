@@ -15,8 +15,9 @@ const LoginForm = () => {
     const body = { username, password };
     setLoginFailed(false)
     // 'http://localhost:8080/api/v1//login'
+    //'https://cscloud8-44.lnu.se/shift/api/v1/auth/login'
    
-    const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/auth/login', {
+    const response = await fetch('http://localhost:8080/api/v1//login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

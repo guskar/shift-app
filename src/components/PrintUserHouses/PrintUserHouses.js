@@ -5,7 +5,7 @@ import styles from './style.module.css'
 
 
 const PrintUserHouses = () => {
-
+ 
   const [allHouses, setAllHouses] = useState([])
   const [filteredHouses, setFilteredHouses] = useState([])
   const [userName, setUsername] = useState('')
@@ -14,17 +14,17 @@ const PrintUserHouses = () => {
 
     const accessToken = getAccessToken()
     const splittedAcces = accessToken.split('.')
-    var encodedStringAtoB = splittedAcces[1];
-    var decodedStringAtoB = atob(encodedStringAtoB);
+    var encodedStringAtoB = splittedAcces[1]
+    var decodedStringAtoB = atob(encodedStringAtoB)
     
     const data = JSON.parse(decodedStringAtoB)
     setUsername(data.sub)
     
-    
+    // 'https://cscloud8-44.lnu.se/shift/api/v1/houses'
     // 'http://localhost:8081/api/v1/houses'
     const fetcher = async () => {
      
-      const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/houses', {
+      const response = await fetch('http://localhost:8081/api/v1/houses/user', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${accessToken}`
