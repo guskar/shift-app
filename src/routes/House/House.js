@@ -9,12 +9,17 @@ import { MdPool } from 'react-icons/md'
 import { MdWifi } from 'react-icons/md'
 import { FiMonitor } from 'react-icons/fi'
 import { MdBed } from 'react-icons/md'
+import { FaWheelchair } from 'react-icons/fa'
+import Map from '../../components/Map/Map'
+
+
 
 
 
 
 
 const House = () => {
+  
   const navigate = useNavigate()
   const [house, setHouse] = useState([])
   const [conversations, setConversations] = useState({})
@@ -22,21 +27,23 @@ const House = () => {
   const [message, setMessage] = useState('')
   const [showEditHouse, setShowEditHouse] = useState(false)
   const [requestMade, setRequestMade] = useState('')
+  const [dateFrom, setDateFrom] = useState('')
+  const [dateTo, setDateTo] = useState('')
 
   const {
     id
   } = useParams('/houses/:id')
 
 
-  const addComment = async () => {
+  const makeRequest = async () => {
     const commentBody = {
       conversationId: getLoggedInUserName(),
-      comment: `${getLoggedInUserName()} has made a request on this house`
+      comment: `${getLoggedInUserName()} has made a request on this house between ${dateFrom} and ${dateTo}`
     }
 
     // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`
     // `http://localhost:8081/api/v1/houses/${id}/comment`
-    await fetch(`http://localhost:8081/api/v1/houses/${id}/comment`, {
+    await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -56,7 +63,7 @@ const House = () => {
     }
     // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`
     // `http://localhost:8081/api/v1/houses/${id}/comment`
-    await fetch(`http://localhost:8081/api/v1/houses/${id}/comment`, {
+    await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -73,7 +80,7 @@ const House = () => {
   const deleteHouse = async () => {
     // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`
     // `http://localhost:8081/api/v1/houses/${id}`
-    const response = await fetch(`http://localhost:8081/api/v1/houses/${id}`, {
+    const response = await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${getAccessToken()}`
@@ -103,7 +110,7 @@ const House = () => {
       // `http://localhost:8081/api/v1/houses/${id}`
       // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`
 
-      const response = await fetch(`http://localhost:8081/api/v1/houses/${id}`, {
+      const response = await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${getAccessToken()}`
@@ -132,7 +139,6 @@ const House = () => {
   }, [id])
 
 
-
   return (
     <div className={styles.specificHouseDiv}>
       <img src={house.imageUrl} alt='' className={styles.img} />
@@ -146,18 +152,24 @@ const House = () => {
             <h5>{house.pool ? <MdPool className={styles.icons}></MdPool> : ''}</h5>
             <h5>{house.wifi ? <MdWifi className={styles.icons}></MdWifi> : ''}</h5>
             <h5>{house.tv ? <FiMonitor className={styles.icons}></FiMonitor> : ''}</h5>
+            <h5>{house.wheelchairAccessible ? <FaWheelchair className={styles.icons}></FaWheelchair> : ''}</h5>
             <h5>{<MdBed className={styles.icons}></MdBed>} {house.beds}</h5>
-            <h5 className={styles.rooms}>{`Rooms: ${house.rooms}`} </h5>
-          </div>
+            <h5 className={styles.text}>{`Rooms: ${house.rooms}`} </h5>
+            <h5 className={styles.text}>{house.borrow ? 'Free to borrow': ''}</h5>
+          </div> 
         </div>
 
+        {house.owner === getLoggedInUserName()? '': <Map></Map>}
+
         {(house.owner !== getLoggedInUserName() && !requestMade) && (
-          <div>
-            <button onClick={addComment}>
+          <div className={styles.buttonsDiv}>
+            <button onClick={makeRequest}>
               Make request
             </button>
-            <input type="date" />
-            <input type="date" />
+            <label>From</label>
+            <input type='date' onChange={(e) =>setDateFrom(e.target.value)}/>
+            <label>To</label>
+            <input type='date'onChange={(e) =>setDateTo(e.target.value)} />
           </div>
         )}
         {house.owner === getLoggedInUserName() && (
@@ -182,7 +194,7 @@ const House = () => {
           <div key={conversationId} className={styles.commentsDiv} >
             {conversations[conversationId].map((comment, index) => (
               <div key={index}>
-                <Comments comment={comment} house={house}></Comments>
+               {comment.username === getLoggedInUserName()? <Comments color='rgb(117, 145, 69)' comment={comment} house={house}></Comments> : <Comments color='#206040' comment={comment} house={house}></Comments>} 
               </div>
             ))}
             <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} />

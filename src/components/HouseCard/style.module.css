@@ -16,7 +16,9 @@
 .iconsDiv{
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content:space-evenly;
+  gap: 2px;
 }
 
 .icons{
@@ -25,6 +27,7 @@
 
 .button{
   border: none;
+  border-radius: 5px;
 }
 
 .button:hover{

@@ -1,0 +1,10 @@
+.commentDiv{
+  margin: 0.3rem;
+  padding: 1rem;
+  border-radius: 10px;
+  color: lightgrey;
+}
+
+.commentDiv h4, h5{
+  margin: 0.4rem;
+}

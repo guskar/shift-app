@@ -14,16 +14,18 @@ const CreateHouseForm = () => {
   const [createHouseFailed, setCreateHouseFailed] = useState(false)
   const [nrOfRooms, setNrOfRooms] = useState('')
   const [nrOfBeds, setNrOfBeds] = useState('')
+  const [wheelchairAccessible, setwheelchairAccessible] = useState(false)
+  const [borrow, setBorrow] = useState(false)
 
   const handleSubmit = async (event) => {
 
     event.preventDefault();
-    const body = { location, imageUrl, description, hasPool, hasWifi, hasTv, nrOfRooms, nrOfBeds };
+    const body = { location, imageUrl, description, hasPool, hasWifi, hasTv, nrOfRooms, nrOfBeds, borrow, wheelchairAccessible };
 
     // 'http://localhost:8081/api/v1/houses'
     // 'https://cscloud8-44.lnu.se/shift/api/v1/houses'
 
-    const response = await fetch('http://localhost:8081/api/v1/houses', {
+    const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/houses', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -79,6 +81,12 @@ const CreateHouseForm = () => {
         <option value="7">7</option>
         <option value="8">8</option>
       </select>
+
+      <label>Free to borrow</label>
+      <input type="checkbox" value='borrow' checked={borrow} onChange={(e) => setBorrow(!borrow)} />
+
+      <label>Wheelchair-Accessible</label>
+      <input type="checkbox" value='Wheelchair-Accessible' checked={wheelchairAccessible} onChange={(e) => setwheelchairAccessible(!wheelchairAccessible)} />
 
       <label>Pool</label>
       <input type="checkbox" value='pool' checked={hasPool} onChange={(e) => sethasPool(!hasPool)} />

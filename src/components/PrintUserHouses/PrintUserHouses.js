@@ -24,7 +24,7 @@ const PrintUserHouses = () => {
     // 'http://localhost:8081/api/v1/houses'
     const fetcher = async () => {
      
-      const response = await fetch('http://localhost:8081/api/v1/houses/user', {
+      const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/houses', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${accessToken}`

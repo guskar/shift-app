@@ -1,18 +1,17 @@
 
 import { getLoggedInUserName } from "../../utils/auth"
+import styles from './style.module.css'
 
 
-const Comments = ({ comment }) => {
+const Comments = ({ comment, color }) => {
  
   
   return (
-    <div>
-      <div>
-        {comment.username === getLoggedInUserName() ? 'you' : comment.username}
-      </div>
-      <div>
-        {comment.comment}
-      </div>
+    <div style={{backgroundColor: color}} className={styles.commentDiv}> 
+    
+       <h4>{comment.username === getLoggedInUserName() ? 'You' : comment.username}</h4>
+       <h5>{comment.comment}</h5>
+     
     </div>
   )
 }

@@ -42,7 +42,7 @@ function UpdateHouseForm({ house }) {
     // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`
     // `http://localhost:8081/api/v1/houses/${id}`
    
-    const response = await fetch(`http://localhost:8081/api/v1/houses/${id}`, {
+    const response = await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
