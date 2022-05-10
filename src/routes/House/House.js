@@ -19,7 +19,7 @@ import Map from '../../components/Map/Map'
 
 
 const House = () => {
-  
+
   const navigate = useNavigate()
   const [house, setHouse] = useState([])
   const [conversations, setConversations] = useState({})
@@ -155,21 +155,21 @@ const House = () => {
             <h5>{house.wheelchairAccessible ? <FaWheelchair className={styles.icons}></FaWheelchair> : ''}</h5>
             <h5>{<MdBed className={styles.icons}></MdBed>} {house.beds}</h5>
             <h5 className={styles.text}>{`Rooms: ${house.rooms}`} </h5>
-            <h5 className={styles.text}>{house.borrow ? 'Free to borrow': ''}</h5>
-          </div> 
+            <h5 className={styles.text}>{house.borrow ? 'Free to borrow' : ''}</h5>
+          </div>
         </div>
 
-        {house.owner === getLoggedInUserName()? '': <Map></Map>}
+        {house.owner === getLoggedInUserName() ? '' : <Map location={house.location}></Map>}
 
         {(house.owner !== getLoggedInUserName() && !requestMade) && (
           <div className={styles.buttonsDiv}>
+            <label>From</label>
+            <input type='date' onChange={(e) => setDateFrom(e.target.value)} />
+            <label>To</label>
+            <input type='date' onChange={(e) => setDateTo(e.target.value)} />
             <button onClick={makeRequest}>
               Make request
             </button>
-            <label>From</label>
-            <input type='date' onChange={(e) =>setDateFrom(e.target.value)}/>
-            <label>To</label>
-            <input type='date'onChange={(e) =>setDateTo(e.target.value)} />
           </div>
         )}
         {house.owner === getLoggedInUserName() && (
@@ -194,7 +194,7 @@ const House = () => {
           <div key={conversationId} className={styles.commentsDiv} >
             {conversations[conversationId].map((comment, index) => (
               <div key={index}>
-               {comment.username === getLoggedInUserName()? <Comments color='rgb(117, 145, 69)' comment={comment} house={house}></Comments> : <Comments color='#206040' comment={comment} house={house}></Comments>} 
+                {comment.username === getLoggedInUserName() ? <Comments color='#609e71' comment={comment} house={house}></Comments> : <Comments color='#389674' comment={comment} house={house}></Comments>}
               </div>
             ))}
             <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
