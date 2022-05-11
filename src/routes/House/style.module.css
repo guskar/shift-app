@@ -90,3 +90,22 @@
 .text{
   font-size: 25px;
 }
+
+@media only screen and (max-width: 600px) {
+  .specificHouseDiv{
+    grid-template-columns: 1fr;
+  }
+  .infoDiv{
+    grid-template-columns: 1fr;
+  }
+  .commentsDiv{
+    width: 100%;
+  }
+  .commentsDiv input{
+    width: 100%;
+  }
+  .commentsDiv button{
+    width: 100%;
+  }
+
+}
