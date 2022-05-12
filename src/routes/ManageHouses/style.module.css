@@ -1,0 +1,16 @@
+.houseDiv{
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+}
+
+.button{
+  border-radius: 500px;
+  border: none;
+  width: 20%;
+  margin: 2rem;
+  background-color: #609e71;
+  height: 40px;
+  color: lightgray;
+
+}

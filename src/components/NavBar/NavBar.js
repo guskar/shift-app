@@ -14,7 +14,7 @@ const NavBar = () => {
       {!isLoggedIn && <Link to="/">Home</Link>}
       {!isLoggedIn && <Link to="/login">Login</Link>}
       {isLoggedIn ? <Link to="/logout">Logout</Link> : <Link to="/register">Register</Link>}
-      {isLoggedIn && <Link to="/add">Add house</Link> }
+      {isLoggedIn && <Link to="/userhouses">Your houses</Link> }
       {isLoggedIn && <Link  className={styles.username} to="/profile">{getLoggedInUserName()}</Link>}
       
     </div>

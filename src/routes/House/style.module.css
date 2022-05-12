@@ -54,10 +54,16 @@
   grid-template-columns: 3fr 1fr;
 }
 
-.img{
+.imageDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.imageDiv img{
   width: 100%;
   border-radius: 0%; 
-
 }
 
 .buttonsDiv{

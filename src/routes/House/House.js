@@ -11,6 +11,7 @@ import { FiMonitor } from 'react-icons/fi'
 import { MdBed } from 'react-icons/md'
 import { FaWheelchair } from 'react-icons/fa'
 import Map from '../../components/Map/Map'
+import FlashMessage from '../../components/FlashMessage/FlashMessage'
 
 
 
@@ -26,9 +27,10 @@ const House = () => {
   const [openConversation, setOpenConversation] = useState()
   const [message, setMessage] = useState('')
   const [showEditHouse, setShowEditHouse] = useState(false)
-  const [requestMade, setRequestMade] = useState('')
+  const [requestMade, setRequestMade] = useState(false)
   const [dateFrom, setDateFrom] = useState('')
   const [dateTo, setDateTo] = useState('')
+  const [houseDeleted, setHouseDeleted] = useState(false)
 
   const {
     id
@@ -88,7 +90,12 @@ const House = () => {
     })
 
     if (response.status === 204) {
-      navigate('/profile')
+       
+      setTimeout(() =>{
+        navigate('/profile')}, 3000
+      )
+      setHouseDeleted(true)
+     
     }
 
 
@@ -141,8 +148,9 @@ const House = () => {
 
   return (
     <div className={styles.specificHouseDiv}>
-      <img src={house.imageUrl} alt='' className={styles.img} />
-
+      <div className={styles.imageDiv}>
+        <img src={house.imageUrl} alt='' className={styles.img} />
+      </div>
       <div className={styles.infoDiv}>
         <div>
           <h1>{house.location}</h1>
@@ -158,6 +166,7 @@ const House = () => {
             <h5 className={styles.text}>{house.borrow ? 'Free to borrow' : ''}</h5>
           </div>
         </div>
+        {houseDeleted? <FlashMessage message={'House has been deleted successfully'} show={true}></FlashMessage> : ''}
 
         {house.owner === getLoggedInUserName() ? '' : <Map location={house.location}></Map>}
 
@@ -207,6 +216,7 @@ const House = () => {
           </div>
         )
       ))}
+      
     </div>
   )
 }
