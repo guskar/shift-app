@@ -50,13 +50,13 @@ const CreateHouseForm = () => {
 
     <form onSubmit={handleSubmit} className={styles.formDiv}>
       <label>Location</label>
-      <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
+      <input type="text" value={location} onChange={(e) => setLocation(e.target.value)}required />
 
       <label>Description</label>
-      <textarea rows='10' value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+      <textarea rows='10' value={description} onChange={(e) => setDescription(e.target.value)} required></textarea>
 
       <label>ImageUrl</label>
-      <input type="text" value={imageUrl} onChange={(e) => setimageUrl(e.target.value)} />
+      <input type="text" value={imageUrl} onChange={(e) => setimageUrl(e.target.value)} required/>
 
       <label htmlFor="rooms">Number of rooms:</label>
       <select value={nrOfRooms} onChange={(e) => setNrOfRooms(e.target.value)} name="rooms" id="rooms">
