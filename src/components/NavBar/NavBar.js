@@ -9,7 +9,7 @@ const NavBar = () => {
   const isLoggedIn = useIsLoggedIn()
 
   return (
-    <div className={styles.navbar}>
+    <div className={!window.scroll()? styles.navbar : styles.navbarScroll}>
        <h1 className={styles.h1}>Sh<BsShift></BsShift>fT</h1>
       {!isLoggedIn && <Link to="/">Home</Link>}
       {!isLoggedIn && <Link to="/login">Login</Link>}

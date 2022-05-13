@@ -10,7 +10,7 @@ const PrintHouses = () => {
   const [allHouses, setAllHouses] = useState([])
   const [filteredHouses, setFilteredHouses] = useState([])
   const [searchFor, setSearchFor] = useState('')
- 
+
 
   const isLoggedIn = useIsLoggedIn()
 
@@ -45,17 +45,16 @@ const PrintHouses = () => {
   }, [allHouses, searchFor])
 
   return (
-    <div className={styles.houseDiv} >
-      
-        <input type="text" value={searchFor} placeholder='Where to go?' onChange={(e) => setSearchFor(e.target.value)} />
-      
-
-      {filteredHouses.map((house) => (
-        <div key={house.id}>
-          {house.owner !== getLoggedInUserName() && <HouseCard house={house}></HouseCard>}
-        </div>
-      ))}
-    </div>
+    <>
+      <input className={styles.input} type="text" value={searchFor} placeholder='Where to go?' onChange={(e) => setSearchFor(e.target.value)} />
+      <div className={styles.houseDiv} >
+        {filteredHouses.map((house) => (
+          <div key={house.id}>
+            {house.owner !== getLoggedInUserName() && <HouseCard house={house}></HouseCard>}
+          </div>
+        ))}
+      </div>
+    </>
   )
 }
 

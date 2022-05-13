@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
+import FlashMessage from '../FlashMessage/FlashMessage'
 import styles from './style.module.css'
 
 const RegisterForm = () => {
@@ -38,21 +39,21 @@ const RegisterForm = () => {
   return (
     <form onSubmit={handleSubmit} className={styles.registerForm}>
       <label>Username</label>
-      <input type="text" value={username} className={styles.input} onChange={(e) => setUsername(e.target.value)} />
+      <input type="text" value={username} className={styles.input} onChange={(e) => setUsername(e.target.value)} required />
 
       <label>Password</label>
-      <input type="password" value={password} className={styles.input} onChange={(e) => setPassword(e.target.value)} />
+      <input type="password" value={password} className={styles.input} onChange={(e) => setPassword(e.target.value)} required/>
 
       <label>First name</label>
-      <input type="text" value={firstName} className={styles.input} onChange={(e) => setFirstName(e.target.value)} />
+      <input type="text" value={firstName} className={styles.input} onChange={(e) => setFirstName(e.target.value)} required/>
 
       <label>Last name</label>
-      <input type="text" value={lastName} className={styles.input} onChange={(e) => setLastName(e.target.value)} />
+      <input type="text" value={lastName} className={styles.input} onChange={(e) => setLastName(e.target.value)} required/>
 
       <label>email</label>
-      <input type="email" value={email} className={styles.input} onChange={(e) => setEmail(e.target.value)} />
+      <input type="email" value={email} className={styles.input} onChange={(e) => setEmail(e.target.value)} required/>
 
-      {registerFailed && <h4>Failed to register new user, make sure every inputfiled is filled in!</h4>}
+      {registerFailed && <FlashMessage message={'Register failed, please check that all inputs are filled in'} show={true} type={'error'}></FlashMessage>}
 
       <button className={styles.button}>Submit</button>
 

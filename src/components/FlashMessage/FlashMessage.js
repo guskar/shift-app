@@ -1,7 +1,8 @@
-import {Snackbar, Button} from '@mui/material'
+import { Snackbar} from '@mui/material'
+
 import { useState } from 'react'
 
-const FlashMessage = ({message, show}) => {
+const FlashMessage = ({message, show, type}) => {
 
   const [open, setOpen] = useState(show)
 
@@ -15,13 +16,14 @@ const FlashMessage = ({message, show}) => {
 
 
   return (
-    <div>
-      <Snackbar
-      message={message}
-      autoHideDuration={5000}
-      open={open}
-      onClose={handleClose}
-      /> 
+    <div> 
+      <Snackbar autoHideDuration={3000}message={message} open={open} onClose={handleClose}anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'center'
+      }}
+      > 
+      {/* <Alert onClose={handleClose} severity={type}  sx={{width: '100%'}}>{message}</Alert> */}
+      </Snackbar>
     </div>
   )
 }

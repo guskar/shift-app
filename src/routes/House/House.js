@@ -36,7 +36,6 @@ const House = () => {
     id
   } = useParams('/houses/:id')
 
-
   const makeRequest = async () => {
     const commentBody = {
       conversationId: getLoggedInUserName(),
@@ -73,7 +72,6 @@ const House = () => {
       },
       body: JSON.stringify(commentBody)
     })
-
     setMessage('')
 
 
@@ -92,7 +90,7 @@ const House = () => {
     if (response.status === 204) {
        
       setTimeout(() =>{
-        navigate('/profile')}, 3000
+        navigate('/userhouses')}, 2500
       )
       setHouseDeleted(true)
      
@@ -108,11 +106,7 @@ const House = () => {
 
   }
 
-
-
   useEffect(() => {
-
-
     const fetcher = async () => {
       // `http://localhost:8081/api/v1/houses/${id}`
       // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`
@@ -132,8 +126,8 @@ const House = () => {
         json.comments.forEach(comment => {
           if (!_conversations[comment.conversationid]) {
             _conversations[comment.conversationid] = []
+            setRequestMade(true)
           }
-          setRequestMade(true)
           _conversations[comment.conversationid].push(comment)
         });
 
@@ -157,18 +151,18 @@ const House = () => {
           <pre><p>{house.description}</p></pre>
           <h2>{house.owner}</h2>
           <div className={styles.iconsDiv}>
-            <h5>{house.pool ? <MdPool className={styles.icons}></MdPool> : ''}</h5>
-            <h5>{house.wifi ? <MdWifi className={styles.icons}></MdWifi> : ''}</h5>
-            <h5>{house.tv ? <FiMonitor className={styles.icons}></FiMonitor> : ''}</h5>
-            <h5>{house.wheelchairAccessible ? <FaWheelchair className={styles.icons}></FaWheelchair> : ''}</h5>
+            {house.pool ? <MdPool className={styles.icons}></MdPool> : null}
+            {house.wifi ? <MdWifi className={styles.icons}></MdWifi> : null}
+            {house.tv ? <FiMonitor className={styles.icons}></FiMonitor> : null}
+            {house.wheelchairAccessible ? <FaWheelchair className={styles.icons}></FaWheelchair> : null}
             <h5>{<MdBed className={styles.icons}></MdBed>} {house.beds}</h5>
             <h5 className={styles.text}>{`Rooms: ${house.rooms}`} </h5>
-            <h5 className={styles.text}>{house.borrow ? 'Free to borrow' : ''}</h5>
+            {house.borrow ? <h5 className={styles.text}>Free to borrow</h5>: null}
           </div>
         </div>
-        {houseDeleted? <FlashMessage message={'House has been deleted successfully'} show={true}></FlashMessage> : ''}
+        {houseDeleted && <FlashMessage message={'House has been deleted successfully'} show={true} type={'success'}></FlashMessage>}
 
-        {house.owner === getLoggedInUserName() ? '' : <Map location={house.location}></Map>}
+        {house.owner === getLoggedInUserName() ? null : <Map location={house.location}></Map>}
 
         {(house.owner !== getLoggedInUserName() && !requestMade) && (
           <div className={styles.buttonsDiv}>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { getAccessToken } from '../../utils/auth'
+import FlashMessage from '../FlashMessage/FlashMessage'
 import styles from './style.module.css'
 
 
@@ -22,7 +23,8 @@ function UpdateHouseForm({ house }) {
   const [nrOfBeds, setNrOfBeds] = useState('')
   const [wheelchairAccessible, setwheelchairAccessible] = useState(false)
   const [borrow, setBorrow] = useState(false)
-  const [updateHouseFailed, setUpdateHouseFailed] = useState(false)
+  const [updateHouseFailed, setUpdateHouseFailed] = useState('')
+  const [updateHouseSuccess, setUpdateHouseSuccess] = useState('')
 
   useEffect(() => {
     setLocation(house.location)
@@ -65,7 +67,10 @@ function UpdateHouseForm({ house }) {
     })
    
     if(response.status === 204) {
-     navigate('/profile')
+      setTimeout(() =>{
+        navigate('/userhouses')}, 2500
+      )
+      setUpdateHouseSuccess(true)
        
     } else {
       setUpdateHouseFailed(true)
@@ -123,7 +128,8 @@ function UpdateHouseForm({ house }) {
       <label>Tv</label>
       <input type="checkbox" value='Tv' checked={tv} onChange={(e) => setTV(!tv)} />
 
-      {updateHouseFailed && <h4>Update house failed. Make sure every inputfield is filled in!</h4>}
+      {updateHouseFailed && <FlashMessage message={'Edit house failed, please check that all inputs are filled in'} show={true} type={'error'}></FlashMessage>} 
+      {updateHouseSuccess && <FlashMessage message={'The house was updated successfully'} show={true} type={'error'}></FlashMessage>} 
 
       <button>Submit</button>
 

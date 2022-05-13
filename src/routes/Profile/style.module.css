@@ -1,18 +1,9 @@
 .profileDiv{
-  display: grid;
-}
-
-.profileDiv h2{
-  margin: 0;
-  margin-bottom:  1rem;
-}
-
-.allHousesDiv{
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  
 }
+
+
 @media only screen and (max-width: 600px) {
   .profileDiv{
     grid-template-columns: 1fr;

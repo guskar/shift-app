@@ -9,16 +9,18 @@ import Register from './routes/Register/Register';
 import { Logout } from './routes/Logout/Logout';
 import House from './routes/House/House';
 import Profile from './routes/Profile/Profile';
+import AddHouse from './routes/AddHouse/AddHouse';
 
 
 function App() {
- 
+  
   return (
     <div className="App">
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="userhouses" element={<ManageHouses />}/>
+        <Route path="userhouses/add" element={<AddHouse />}/>
         <Route path="login" element={<Login />}/>
         <Route path="register" element={<Register />}/>
         <Route path="profile" element={<Profile />}/>

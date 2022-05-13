@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { getAccessToken } from '../../utils/auth'
+import FlashMessage from '../FlashMessage/FlashMessage'
 import styles from './style.module.css'
 
 const CreateHouseForm = () => {
@@ -11,7 +12,8 @@ const CreateHouseForm = () => {
   const [hasPool, sethasPool] = useState(false)
   const [hasWifi, sethasWifi] = useState(false)
   const [hasTv, sethasTv] = useState(false)
-  const [createHouseFailed, setCreateHouseFailed] = useState(false)
+  const [createHouseFailed, setCreateHouseFailed] = useState('')
+  const [createHouseSuccess, setCreateHouseSuccess] = useState('')
   const [nrOfRooms, setNrOfRooms] = useState('')
   const [nrOfBeds, setNrOfBeds] = useState('')
   const [wheelchairAccessible, setwheelchairAccessible] = useState(false)
@@ -35,7 +37,11 @@ const CreateHouseForm = () => {
     })
 
     if (response.status === 201) {
-      navigate('/profile')
+      setTimeout(() =>{
+        navigate('/userhouses')}, 2500
+      )
+      setCreateHouseSuccess(true)
+      
 
     } else {
       setCreateHouseFailed(true)
@@ -97,8 +103,9 @@ const CreateHouseForm = () => {
       <label>Tv</label>
       <input type="checkbox" value='Tv' checked={hasTv} onChange={(e) => sethasTv(!hasTv)} />
 
-      {createHouseFailed && <h4>Create house failed. Make sure every inputfield is filled in!</h4>}
-
+      {createHouseFailed && <FlashMessage message={'Add house failed, please check that all inputs are filled in'} show={true} type={'error'}></FlashMessage>} 
+      {createHouseSuccess && <FlashMessage message={'The house was added successfully'} show={true} type={'error'}></FlashMessage>} 
+      
       <button>Submit</button>
 
     </form>

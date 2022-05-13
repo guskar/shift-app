@@ -1,5 +1,5 @@
 .navbar {
-  
+  border-bottom: 1px solid lightgrey;
   height: 50px;
   display:flex;
   flex-direction: row;
@@ -7,7 +7,24 @@
   gap: 10px;
   align-items: center;
   padding: 1rem;
+  position: sticky;
+  top: 0;
+  background-color: white;
  
+}
+.navbarScroll{
+  border-bottom: 1px solid lightgrey;
+  height: 50px;
+  display:flex;
+  flex-direction: row;
+  justify-content:flex-end;
+  gap: 10px;
+  align-items: center;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  opacity: 50%;
 }
 
 .h1{

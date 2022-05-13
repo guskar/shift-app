@@ -22,13 +22,13 @@ const HouseCard = ({ house }) => {
         <h3>{house.location}</h3>
         <h5>{house.owner}</h5>
         <div className={styles.iconsDiv}>
-          <h5>{house.pool ? <MdPool className={styles.icons}></MdPool> : ''}</h5>
-          <h5>{house.wifi ? <MdWifi className={styles.icons}></MdWifi> : ''}</h5>
-          <h5>{house.tv ? <FiMonitor className={styles.icons}></FiMonitor> : ''}</h5>
-          <h5>{house.wheelchairAccessible ? <FaWheelchair className={styles.icons}></FaWheelchair> : ''}</h5>
-          <h5>{ <MdBed className={styles.icons}></MdBed>} {house.beds}</h5>
+          {house.pool ? <MdPool className={styles.icons}></MdPool> : null}
+          {house.wifi ? <MdWifi className={styles.icons}></MdWifi> : null}
+         {house.tv ? <FiMonitor className={styles.icons}></FiMonitor> : null}
+         {house.wheelchairAccessible ? <FaWheelchair className={styles.icons}></FaWheelchair> : null}
+          { <h5><MdBed className={styles.icons}></MdBed>{house.beds}</h5>} 
           <h5>{`Rooms: ${house.rooms}`}</h5>
-          <h5>{house.borrow ? 'Free to borrow': ''}</h5>
+          {house.borrow ? <h5>Free to borrow</h5>: null}
           
         </div>
       </div>

@@ -1,7 +1,6 @@
 .houseDiv{
   display: flex;
   flex-direction: column;
-  flex-shrink: 1;
 }
 
 .button{
@@ -14,3 +13,4 @@
   color: lightgray;
 
 }
+

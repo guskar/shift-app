@@ -1,21 +1,22 @@
-import React, { useState } from 'react'
-import CreateHouseForm from '../../components/CreateHouseForm/CreateHouseForm'
+
 import PrintUserHouses from '../../components/PrintUserHouses/PrintUserHouses'
 import { useIsLoggedIn } from '../../utils/utilhooks'
 import styles from './style.module.css'
+import { useNavigate} from 'react-router'
 
 
 const ManageHouses = () => {
+  const navigate = useNavigate()
   const isLoggedIn = useIsLoggedIn()
-  const [showHouseForm, setShowHouseForm] = useState(false)
+  
 
   return (
     <div>
-      <button className={styles.button} onClick={() => setShowHouseForm(!showHouseForm)}>Add house</button>
+      <button className={styles.button} onClick={() => navigate('add')}>Add house</button>
       <div className={styles.houseDiv}>
         {isLoggedIn && <PrintUserHouses></PrintUserHouses>}
-        {showHouseForm ? <CreateHouseForm></CreateHouseForm> : ''}
       </div>
+        
     </div>
   )
 }

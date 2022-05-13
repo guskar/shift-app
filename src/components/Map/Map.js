@@ -15,21 +15,17 @@ const Map = ({ location }) => {
       setAddress(location)
       const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address},+CA&key=${process.env.REACT_APP_NEXT_PUBLIC_API_KEY}`, {
         "method": "GET",
-
       })
-
       const resp = await response.json()
       setLatitude(resp.results[0].geometry.location.lat)
       setLongitude(resp.results[0].geometry.location.lng)
-      
+     
 
     }
-
     fetcher()
-  }, [address,location])
+    
 
-
-
+  }, [address, location])
 
 
   return isLoaded ? (

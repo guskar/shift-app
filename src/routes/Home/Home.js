@@ -22,7 +22,7 @@ const Home = () => {
       <div className={styles.registerDiv}>
         <h2>Register now and start shifting!</h2>
         <h5>Get access to all houses!</h5>
-        <button className={styles.button} onClick={() => navigate('register')}>Register now</button>
+        <button className={styles.button} onClick={() => navigate('register')}>Register</button>
       </div>
 
 
