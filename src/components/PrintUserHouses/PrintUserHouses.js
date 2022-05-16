@@ -1,33 +1,37 @@
-import { useEffect, useState } from "react"
-import { getAccessToken } from "../../utils/auth"
-import HouseCard from "../HouseCard/HouseCard"
+import { React, useEffect, useState } from 'react'
+import { getAccessToken } from '../../utils/auth'
+import HouseCard from '../HouseCard/HouseCard'
 import styles from './style.module.css'
-
-
+/**
+ * A component that prints all Userhouses.
+ *
+ * @returns {React.ReactElement} The PrintUserHouses component.
+ */
 const PrintUserHouses = () => {
- 
   const [allHouses, setAllHouses] = useState([])
   const [filteredHouses, setFilteredHouses] = useState([])
   const [userName, setUsername] = useState('')
 
   useEffect(() => {
-
     const accessToken = getAccessToken()
     const splittedAcces = accessToken.split('.')
-    var encodedStringAtoB = splittedAcces[1]
-    var decodedStringAtoB = atob(encodedStringAtoB)
-    
+    const encodedStringAtoB = splittedAcces[1]
+    const decodedStringAtoB = atob(encodedStringAtoB)
+
     const data = JSON.parse(decodedStringAtoB)
     setUsername(data.sub)
-    
+
     // 'https://cscloud8-44.lnu.se/shift/api/v1/houses'
     // 'http://localhost:8081/api/v1/houses'
+
+    /**
+     * Fetches all userhouses from api.
+     */
     const fetcher = async () => {
-     
       const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/houses', {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${accessToken}`
+          Authorization: `Bearer ${accessToken}`
         }
       })
 
@@ -37,9 +41,8 @@ const PrintUserHouses = () => {
       } else {
         setAllHouses([])
       }
-
     }
-    fetcher();
+    fetcher()
   }, [userName])
 
   useEffect(() => {
@@ -47,16 +50,13 @@ const PrintUserHouses = () => {
     setFilteredHouses(filtered)
   }, [allHouses, userName])
 
-
-
-
   return (
     <div className={styles.houseDiv}>
        {filteredHouses.map((house) => (
         <div key={house.id}>
           <HouseCard house={house}></HouseCard>
         </div>
-      ))}
+       ))}
     </div>
   )
 }

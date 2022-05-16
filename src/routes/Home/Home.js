@@ -1,18 +1,14 @@
-
-
+import React from 'react'
 import { BsShift } from 'react-icons/bs'
 import { useNavigate } from 'react-router'
 import styles from './style.module.css'
-
+/**
+ * A route rendering the homepage.
+ *
+ * @returns {React.ReactElement} Renders the homepage.
+ */
 const Home = () => {
-
   const navigate = useNavigate()
-
-
-
-
-
-
   return (
 
     <div id='houseDiv'>
@@ -25,9 +21,7 @@ const Home = () => {
         <button className={styles.button} onClick={() => navigate('register')}>Register</button>
       </div>
 
-
     </div>
   )
 }
-
 export default Home

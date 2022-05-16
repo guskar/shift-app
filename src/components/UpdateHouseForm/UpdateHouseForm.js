@@ -3,15 +3,16 @@ import { useNavigate, useParams } from 'react-router'
 import { getAccessToken } from '../../utils/auth'
 import FlashMessage from '../FlashMessage/FlashMessage'
 import styles from './style.module.css'
-
-
-function UpdateHouseForm({ house }) {
-
+/**
+ * A component rendering a form for updating a house.
+ *
+ * @type {object} Props.
+ * @returns {React.ReactElement} The update house form.
+ */
+function UpdateHouseForm ({ house }) {
   const {
     id
   } = useParams('/houses/:id')
- 
-
   const navigate = useNavigate()
   const [location, setLocation] = useState(house.location)
   const [imageUrl, setimageUrl] = useState(house.imageUrl)
@@ -39,12 +40,17 @@ function UpdateHouseForm({ house }) {
     setBorrow(house.borrow)
   }, [house])
 
+  /**
+   * Handles the submit of updateform.
+   *
+   * @param {object} event The event object.
+   */
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
     const body = {
-      location, 
-      imageUrl, 
-      description, 
+      location,
+      imageUrl,
+      description,
       pool,
       wifi,
       tv,
@@ -56,22 +62,22 @@ function UpdateHouseForm({ house }) {
     }
     // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`
     // `http://localhost:8081/api/v1/houses/${id}`
-   
+
     const response = await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${getAccessToken()}`
+        Authorization: `Bearer ${getAccessToken()}`
       },
       body: JSON.stringify(body)
     })
-   
-    if(response.status === 204) {
-      setTimeout(() =>{
-        navigate('/userhouses')}, 2500
+
+    if (response.status === 204) {
+      setTimeout(() => {
+        navigate('/userhouses')
+      }, 2500
       )
       setUpdateHouseSuccess(true)
-       
     } else {
       setUpdateHouseFailed(true)
     }
@@ -128,14 +134,13 @@ function UpdateHouseForm({ house }) {
       <label>Tv</label>
       <input type="checkbox" value='Tv' checked={tv} onChange={(e) => setTV(!tv)} />
 
-      {updateHouseFailed && <FlashMessage message={'Edit house failed, please check that all inputs are filled in'} show={true} type={'error'}></FlashMessage>} 
-      {updateHouseSuccess && <FlashMessage message={'The house was updated successfully'} show={true} type={'error'}></FlashMessage>} 
+      {updateHouseFailed && <FlashMessage message={'Edit house failed, please check that all inputs are filled in'} show={true} type={'error'}></FlashMessage>}
+      {updateHouseSuccess && <FlashMessage message={'The house was updated successfully'} show={true} type={'error'}></FlashMessage>}
 
       <button>Submit</button>
 
-       
       </form>
-      
+
     </div>
   )
 }

@@ -3,7 +3,11 @@ import { useNavigate } from 'react-router'
 import { getAccessToken } from '../../utils/auth'
 import FlashMessage from '../FlashMessage/FlashMessage'
 import styles from './style.module.css'
-
+/**
+ * A Createhouse Component returning a form for adding a house.
+ *
+ * @returns {React.ReactElement} The add house form.
+ */
 const CreateHouseForm = () => {
   const navigate = useNavigate()
   const [location, setLocation] = useState('')
@@ -18,11 +22,14 @@ const CreateHouseForm = () => {
   const [nrOfBeds, setNrOfBeds] = useState('')
   const [wheelchairAccessible, setwheelchairAccessible] = useState(false)
   const [borrow, setBorrow] = useState(false)
-
+  /**
+   * Handles submit of the event.
+   *
+   * @type {object} The event.
+   */
   const handleSubmit = async (event) => {
-
-    event.preventDefault();
-    const body = { location, imageUrl, description, hasPool, hasWifi, hasTv, nrOfRooms, nrOfBeds, borrow, wheelchairAccessible };
+    event.preventDefault()
+    const body = { location, imageUrl, description, hasPool, hasWifi, hasTv, nrOfRooms, nrOfBeds, borrow, wheelchairAccessible }
 
     // 'http://localhost:8081/api/v1/houses'
     // 'https://cscloud8-44.lnu.se/shift/api/v1/houses'
@@ -31,38 +38,33 @@ const CreateHouseForm = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${getAccessToken()}`
+        Authorization: `Bearer ${getAccessToken()}`
       },
       body: JSON.stringify(body)
     })
 
     if (response.status === 201) {
-      setTimeout(() =>{
-        navigate('/userhouses')}, 2500
+      setTimeout(() => {
+        navigate('/userhouses')
+      }, 2500
       )
       setCreateHouseSuccess(true)
-      
-
     } else {
       setCreateHouseFailed(true)
     }
-
-
-
   }
-
 
   return (
 
     <form onSubmit={handleSubmit} className={styles.formDiv}>
       <label>Location</label>
-      <input type="text" value={location} onChange={(e) => setLocation(e.target.value)}required />
+      <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} required />
 
       <label>Description</label>
       <textarea rows='10' value={description} onChange={(e) => setDescription(e.target.value)} required></textarea>
 
       <label>ImageUrl</label>
-      <input type="text" value={imageUrl} onChange={(e) => setimageUrl(e.target.value)} required/>
+      <input type="text" value={imageUrl} onChange={(e) => setimageUrl(e.target.value)} required />
 
       <label htmlFor="rooms">Number of rooms:</label>
       <select value={nrOfRooms} onChange={(e) => setNrOfRooms(e.target.value)} name="rooms" id="rooms">
@@ -103,14 +105,12 @@ const CreateHouseForm = () => {
       <label>Tv</label>
       <input type="checkbox" value='Tv' checked={hasTv} onChange={(e) => sethasTv(!hasTv)} />
 
-      {createHouseFailed && <FlashMessage message={'Add house failed, please check that all inputs are filled in'} show={true} type={'error'}></FlashMessage>} 
-      {createHouseSuccess && <FlashMessage message={'The house was added successfully'} show={true} type={'error'}></FlashMessage>} 
-      
+      {createHouseFailed && <FlashMessage message={'Add house failed, please check that all inputs are filled in'} show={true} type={'error'}></FlashMessage>}
+      {createHouseSuccess && <FlashMessage message={'The house was added successfully'} show={true} type={'error'}></FlashMessage>}
+
       <button>Submit</button>
 
     </form>
-
-
   )
 }
 

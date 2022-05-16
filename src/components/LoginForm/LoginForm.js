@@ -1,23 +1,33 @@
-import React from 'react'
-import { useState } from 'react'
+
+import { React, useState } from 'react'
 import styles from './style.module.css'
 import { saveAccessToken } from '../../utils/auth'
 import { useNavigate } from 'react-router'
 import FlashMessage from '../FlashMessage/FlashMessage'
 
+/**
+ * A loginform component.
+ *
+ * @returns {React.ReactElement} The Loginform component.
+ */
 const LoginForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [loginFailed, setLoginFailed] = useState(false)
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
+  /**
+   * Submits the event.
+   *
+   * @param {object} event The event object.
+   */
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    const body = { username, password };
+    event.preventDefault()
+    const body = { username, password }
     setLoginFailed(false)
     // 'http://localhost:8080/api/v1//login'
-    //'https://cscloud8-44.lnu.se/shift/api/v1/auth/login'
-   
+    // 'https://cscloud8-44.lnu.se/shift/api/v1/auth/login'
+
     const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/auth/login', {
       method: 'POST',
       headers: {
@@ -27,14 +37,12 @@ const LoginForm = () => {
     })
 
     const data = await response.json()
-    
 
     if (data.access_token) {
       saveAccessToken(data.access_token)
       navigate('/profile')
     } else {
       setLoginFailed(true)
-     
     }
   }
 

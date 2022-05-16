@@ -1,26 +1,21 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import React, { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router'
 import { getAccessToken, getLoggedInUserName } from '../../utils/auth'
-import { useNavigate } from 'react-router'
 import styles from './style.module.css'
 import Comments from '../../components/Comments/Comments'
 import UpdateHouseForm from '../../components/UpdateHouseForm/UpdateHouseForm'
-import { MdPool } from 'react-icons/md'
-import { MdWifi } from 'react-icons/md'
+import { MdPool, MdWifi, MdBed } from 'react-icons/md'
 import { FiMonitor } from 'react-icons/fi'
-import { MdBed } from 'react-icons/md'
 import { FaWheelchair } from 'react-icons/fa'
 import Map from '../../components/Map/Map'
 import FlashMessage from '../../components/FlashMessage/FlashMessage'
 
-
-
-
-
-
-
+/**
+ * A route for rendering the house page.
+ *
+ * @returns {React.ReactElement} The housepage.
+ */
 const House = () => {
-
   const navigate = useNavigate()
   const [house, setHouse] = useState([])
   const [conversations, setConversations] = useState({})
@@ -36,6 +31,9 @@ const House = () => {
     id
   } = useParams('/houses/:id')
 
+  /**
+   * Makes a post to resource api for adding a comment.
+   */
   const makeRequest = async () => {
     const commentBody = {
       conversationId: getLoggedInUserName(),
@@ -48,19 +46,22 @@ const House = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${getAccessToken()}`
+        Authorization: `Bearer ${getAccessToken()}`
       },
       body: JSON.stringify(commentBody)
     })
-
-
-
   }
 
+  /**
+   * Makes a post request to resource api for adding a reply to a comment.
+   *
+   * @param {string} conversationId The current conversation id.
+   * @param {object} comment The current comment.
+   */
   const reply = async (conversationId, comment) => {
     const commentBody = {
-      conversationId: conversationId,
-      comment: comment
+      conversationId,
+      comment
     }
     // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`
     // `http://localhost:8081/api/v1/houses/${id}/comment`
@@ -68,45 +69,46 @@ const House = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${getAccessToken()}`
+        Authorization: `Bearer ${getAccessToken()}`
       },
       body: JSON.stringify(commentBody)
     })
     setMessage('')
-
-
   }
 
+  /**
+   * Makes a delete request to resource api to delete current house.
+   */
   const deleteHouse = async () => {
     // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`
     // `http://localhost:8081/api/v1/houses/${id}`
     const response = await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`, {
       method: 'DELETE',
       headers: {
-        'Authorization': `Bearer ${getAccessToken()}`
+        Authorization: `Bearer ${getAccessToken()}`
       }
     })
 
     if (response.status === 204) {
-       
-      setTimeout(() =>{
-        navigate('/userhouses')}, 2500
+      setTimeout(() => {
+        navigate('/userhouses')
+      }, 2500
       )
       setHouseDeleted(true)
-     
     }
-
-
-
   }
 
+  /**
+   * Sets the ShowEditHouse state.
+   */
   const editHouse = () => {
-
     setShowEditHouse(!showEditHouse)
-
   }
 
   useEffect(() => {
+    /**
+     * Fetches the current house from resource api.
+     */
     const fetcher = async () => {
       // `http://localhost:8081/api/v1/houses/${id}`
       // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`
@@ -114,7 +116,7 @@ const House = () => {
       const response = await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}`, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${getAccessToken()}`
+          Authorization: `Bearer ${getAccessToken()}`
         }
       })
 
@@ -129,16 +131,15 @@ const House = () => {
             setRequestMade(true)
           }
           _conversations[comment.conversationid].push(comment)
-        });
+        })
 
         setConversations(_conversations)
         setHouse(json.house)
       }
     }
 
-    fetcher();
+    fetcher()
   }, [id])
-
 
   return (
     <div className={styles.specificHouseDiv}>
@@ -157,7 +158,7 @@ const House = () => {
             {house.wheelchairAccessible ? <FaWheelchair className={styles.icons}></FaWheelchair> : null}
             <h5>{<MdBed className={styles.icons}></MdBed>} {house.beds}</h5>
             <h5 className={styles.text}>{`Rooms: ${house.rooms}`} </h5>
-            {house.borrow ? <h5 className={styles.text}>Free to borrow</h5>: null}
+            {house.borrow ? <h5 className={styles.text}>Free to borrow</h5> : null}
           </div>
         </div>
         {houseDeleted && <FlashMessage message={'House has been deleted successfully'} show={true} type={'success'}></FlashMessage>}
@@ -193,7 +194,8 @@ const House = () => {
       </div>
 
       {Object.keys(conversations).map((conversationId) => (
-        conversationId === openConversation ? (
+        conversationId === openConversation
+          ? (
           <div key={conversationId} className={styles.commentsDiv} >
             {conversations[conversationId].map((comment, index) => (
               <div key={index}>
@@ -204,13 +206,14 @@ const House = () => {
             <button onClick={() => reply(conversationId, message)}>Send message</button>
             <button onClick={() => setOpenConversation('')}>Close conversation</button>
           </div>
-        ) : (
+            )
+          : (
           <div key={conversationId} className={styles.commentsDiv}>
             <button onClick={() => setOpenConversation(conversationId)}>{conversationId}</button>
           </div>
-        )
+            )
       ))}
-      
+
     </div>
   )
 }

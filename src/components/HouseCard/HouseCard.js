@@ -1,16 +1,22 @@
 
 import styles from './style.module.css'
-import {  MdPool } from 'react-icons/md'
-import { MdWifi } from 'react-icons/md'
+import { MdPool, MdWifi, MdBed } from 'react-icons/md'
 import { useNavigate } from 'react-router'
 import { FiMonitor } from 'react-icons/fi'
-import { MdBed } from 'react-icons/md'
 import { FaWheelchair } from 'react-icons/fa'
-
-
+import React from 'react'
+/**
+ * A housacard component.
+ *
+ * @type {object} Props.
+ * @returns {React.ReactElement} The housecard component.
+ */
 const HouseCard = ({ house }) => {
   const navigate = useNavigate()
 
+  /**
+   * Navigates user to /houses/${house.id}.
+   */
   const handleOnClick = () => {
     navigate(`/houses/${house.id}`)
   }
@@ -26,10 +32,9 @@ const HouseCard = ({ house }) => {
           {house.wifi ? <MdWifi className={styles.icons}></MdWifi> : null}
          {house.tv ? <FiMonitor className={styles.icons}></FiMonitor> : null}
          {house.wheelchairAccessible ? <FaWheelchair className={styles.icons}></FaWheelchair> : null}
-          { <h5><MdBed className={styles.icons}></MdBed>{house.beds}</h5>} 
+          { <h5><MdBed className={styles.icons}></MdBed>{house.beds}</h5>}
           <h5>{`Rooms: ${house.rooms}`}</h5>
-          {house.borrow ? <h5>Free to borrow</h5>: null}
-          
+          {house.borrow ? <h5>Free to borrow</h5> : null}
         </div>
       </div>
     </button>
