@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import { getAccessToken } from './auth'
-
+/**
+ * A function that returns the accesstoken.
+ *
+ * @returns {string} The accesstoken.
+ */
 export const useIsLoggedIn = () => {
   const [, setRefresh] = useState(0)
-  const access_token = getAccessToken(setRefresh)
+  const accessToken = getAccessToken(setRefresh)
 
-  return access_token !== null
+  return accessToken !== null
 }
