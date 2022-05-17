@@ -6,7 +6,6 @@
  * @param {number} days Days
  */
 function setCookie (name, value, days) {
-  console.log(name)
   let expires = ''
   if (days) {
     const date = new Date()

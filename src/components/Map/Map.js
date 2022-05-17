@@ -8,15 +8,15 @@ import React, { useEffect, useState } from 'react'
  * @returns { React.ReactElement} Renders the google maps cpmponent.
  */
 const Map = ({ location }) => {
-  const [latitude, setLatitude] = useState('')
-  const [longitude, setLongitude] = useState('')
+  const [latitude, setLatitude] = useState(0)
+  const [longitude, setLongitude] = useState(0)
   const [address, setAddress] = useState('')
 
   const { isLoaded } = useJsApiLoader({ googleMapsApiKey: process.env.REACT_APP_NEXT_PUBLIC_API_KEY })
 
   useEffect(() => {
     /**
-     * Fetches the google api to set long and lat on current house.
+     * Fetches the google api to set long and lat on current house showing a map with its position.
      */
     const fetcher = async () => {
       setAddress(location)

@@ -60,7 +60,7 @@ const RegisterForm = () => {
       <label>email</label>
       <input type="email" value={email} className={styles.input} onChange={(e) => setEmail(e.target.value)} required />
 
-      {registerFailed && <FlashMessage message={'Register failed, please check that all inputs are filled in'} show={true} type={'error'}></FlashMessage>}
+      {registerFailed && <FlashMessage message={'Register failed, please check that all inputs are filled in'} show={true}></FlashMessage>}
 
       <button className={styles.button}>Submit</button>
 

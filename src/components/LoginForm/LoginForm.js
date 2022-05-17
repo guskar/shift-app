@@ -50,12 +50,12 @@ const LoginForm = () => {
     <form onSubmit={handleSubmit} className={styles.loginForm}>
 
       <label>Username</label>
-      <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required/>
+      <input data-testid='username' type="text" value={username} onChange={(e) => setUsername(e.target.value)} required/>
 
       <label>Password</label>
       <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
 
-      {loginFailed && <FlashMessage message={'Login failed, check your credentials'} show={true} type={'error'}></FlashMessage>}
+      {loginFailed && <FlashMessage message={'Login failed, check your credentials'} show={true}></FlashMessage>}
       <button>Submit</button>
 
     </form>
