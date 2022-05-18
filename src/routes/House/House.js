@@ -18,14 +18,12 @@ import FlashMessage from '../../components/FlashMessage/FlashMessage'
 const House = () => {
   const navigate = useNavigate()
   const [house, setHouse] = useState([])
-  const [conversations, setConversations] = useState({})
-  const [openConversation, setOpenConversation] = useState()
-  const [message, setMessage] = useState('')
   const [showEditHouse, setShowEditHouse] = useState(false)
   const [requestMade, setRequestMade] = useState(false)
   const [dateFrom, setDateFrom] = useState('')
   const [dateTo, setDateTo] = useState('')
   const [houseDeleted, setHouseDeleted] = useState(false)
+  const [conversations, setConversations] = useState({})
 
   const {
     id
@@ -50,30 +48,6 @@ const House = () => {
       },
       body: JSON.stringify(commentBody)
     })
-  }
-
-  /**
-   * Makes a post request to resource api for adding a reply to a comment.
-   *
-   * @param {string} conversationId The current conversation id.
-   * @param {object} comment The current comment.
-   */
-  const reply = async (conversationId, comment) => {
-    const commentBody = {
-      conversationId,
-      comment
-    }
-    // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`
-    // `http://localhost:8081/api/v1/houses/${id}/comment`
-    await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${getAccessToken()}`
-      },
-      body: JSON.stringify(commentBody)
-    })
-    setMessage('')
   }
 
   /**
@@ -141,6 +115,8 @@ const House = () => {
     fetcher()
   }, [id])
 
+  const isUsersHouse = house.owner === getLoggedInUserName()
+
   return (
     <div className={styles.specificHouseDiv}>
       <div className={styles.imageDiv}>
@@ -163,29 +139,30 @@ const House = () => {
         </div>
         {houseDeleted && <FlashMessage message={'House has been deleted successfully'} show={true} type={'success'}></FlashMessage>}
 
-        {house.owner === getLoggedInUserName() ? null : <Map location={house.location}></Map>}
-
-        {(house.owner !== getLoggedInUserName() && !requestMade) && (
-          <div className={styles.buttonsDiv}>
-            <label>From</label>
-            <input type='date' onChange={(e) => setDateFrom(e.target.value)} />
-            <label>To</label>
-            <input type='date' onChange={(e) => setDateTo(e.target.value)} />
-            <button onClick={makeRequest}>
-              Make request
-            </button>
-          </div>
-        )}
-        {house.owner === getLoggedInUserName() && (
-          <div className={styles.buttonsDiv}>
-            <button onClick={deleteHouse}>
-              Delete house
-            </button>
-            <button onClick={editHouse}>
-              Edit house
-            </button>
-          </div>
-        )}
+        {isUsersHouse
+          ? <>
+              {!requestMade &&
+                <div className={styles.buttonsDiv}>
+                  <label>From</label>
+                  <input type='date' onChange={(e) => setDateFrom(e.target.value)} />
+                  <label>To</label>
+                  <input type='date' onChange={(e) => setDateTo(e.target.value)} />
+                  <button onClick={makeRequest}>
+                    Make request
+                  </button>
+                </div>
+              }
+              <div className={styles.buttonsDiv}>
+                <button onClick={deleteHouse}>
+                  Delete house
+                </button>
+                <button onClick={editHouse}>
+                  Edit house
+                </button>
+              </div>
+            </>
+          : <Map location={house.location}></Map>
+        }
         <div>
           {showEditHouse && <UpdateHouseForm house={house}></UpdateHouseForm>}
           {showEditHouse && <button onClick={() => setShowEditHouse(!showEditHouse)}>Close</button>}
@@ -193,27 +170,7 @@ const House = () => {
 
       </div>
 
-      {Object.keys(conversations).map((conversationId) => (
-        conversationId === openConversation
-          ? (
-          <div key={conversationId} className={styles.commentsDiv} >
-            {conversations[conversationId].map((comment, index) => (
-              <div key={index}>
-                {comment.username === getLoggedInUserName() ? <Comments color='#609e71' comment={comment} house={house}></Comments> : <Comments color='#389674' comment={comment} house={house}></Comments>}
-              </div>
-            ))}
-            <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
-            <button onClick={() => reply(conversationId, message)}>Send message</button>
-            <button onClick={() => setOpenConversation('')}>Close conversation</button>
-          </div>
-            )
-          : (
-          <div key={conversationId} className={styles.commentsDiv}>
-            <button onClick={() => setOpenConversation(conversationId)}>{conversationId}</button>
-          </div>
-            )
-      ))}
-
+      <Comments id={id} conversations={conversations} house={house} />
     </div>
   )
 }

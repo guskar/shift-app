@@ -30,8 +30,8 @@ const HouseCard = ({ house }) => {
         <div className={styles.iconsDiv}>
           {house.pool ? <MdPool className={styles.icons}></MdPool> : null}
           {house.wifi ? <MdWifi className={styles.icons}></MdWifi> : null}
-         {house.tv ? <FiMonitor className={styles.icons}></FiMonitor> : null}
-         {house.wheelchairAccessible ? <FaWheelchair className={styles.icons}></FaWheelchair> : null}
+          {house.tv ? <FiMonitor className={styles.icons}></FiMonitor> : null}
+          {house.wheelchairAccessible ? <FaWheelchair className={styles.icons}></FaWheelchair> : null}
           { <h5><MdBed className={styles.icons}></MdBed>{house.beds}</h5>}
           <h5>{`Rooms: ${house.rooms}`}</h5>
           {house.borrow ? <h5>Free to borrow</h5> : null}
