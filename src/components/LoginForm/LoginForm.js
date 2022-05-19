@@ -4,6 +4,7 @@ import styles from './style.module.css'
 import { saveAccessToken } from '../../utils/auth'
 import { useNavigate } from 'react-router'
 import FlashMessage from '../FlashMessage/FlashMessage'
+import { backendFetch } from '../../utils/utils'
 
 /**
  * A loginform component.
@@ -28,14 +29,7 @@ const LoginForm = () => {
     // 'http://localhost:8080/api/v1//login'
     // 'https://cscloud8-44.lnu.se/shift/api/v1/auth/login'
 
-    const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    })
-
+    const response = await backendFetch('auth/login', 'POST', body, true)
     const data = await response.json()
 
     if (data.access_token) {

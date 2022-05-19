@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
-import { getAccessToken } from '../../utils/auth'
+import { backendFetch } from '../../utils/utils'
 import FlashMessage from '../FlashMessage/FlashMessage'
 import styles from './style.module.css'
 /**
@@ -34,14 +34,7 @@ const CreateHouseForm = () => {
     // 'http://localhost:8081/api/v1/houses'
     // 'https://cscloud8-44.lnu.se/shift/api/v1/houses'
 
-    const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/houses', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${getAccessToken()}`
-      },
-      body: JSON.stringify(body)
-    })
+    const response = await backendFetch('houses', 'POST', body)
 
     if (response.status === 201) {
       setTimeout(() => {

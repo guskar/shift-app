@@ -10,7 +10,6 @@ import React, { useEffect, useState } from 'react'
 const Map = ({ location }) => {
   const [latitude, setLatitude] = useState(0)
   const [longitude, setLongitude] = useState(0)
-  const [address, setAddress] = useState('')
 
   const { isLoaded } = useJsApiLoader({ googleMapsApiKey: process.env.REACT_APP_NEXT_PUBLIC_API_KEY })
 
@@ -19,8 +18,8 @@ const Map = ({ location }) => {
      * Fetches the google api to set long and lat on current house showing a map with its position.
      */
     const fetcher = async () => {
-      setAddress(location)
-      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address},+CA&key=${process.env.REACT_APP_NEXT_PUBLIC_API_KEY}`, {
+      console.log('location', location)
+      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location},Sweden,+CA&key=${process.env.REACT_APP_NEXT_PUBLIC_API_KEY}`, {
         method: 'GET'
       })
       const resp = await response.json()
@@ -28,7 +27,7 @@ const Map = ({ location }) => {
       setLongitude(resp.results[0].geometry.location.lng)
     }
     fetcher()
-  }, [address, location])
+  }, [location])
 
   return isLoaded
     ? (

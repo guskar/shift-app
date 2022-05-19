@@ -1,6 +1,7 @@
 
 import { React, useState } from 'react'
 import { useNavigate } from 'react-router'
+import { backendFetch } from '../../utils/utils'
 import FlashMessage from '../FlashMessage/FlashMessage'
 import styles from './style.module.css'
 /**
@@ -15,6 +16,7 @@ const RegisterForm = () => {
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [registerFailed, setRegisterFailed] = useState(false)
+  const [registerSuccess, setRegisterSuccess] = useState(false)
   const navigate = useNavigate()
 
   /**
@@ -25,20 +27,14 @@ const RegisterForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const body = { username, password, firstName, lastName, email }
-
-    // 'http://localhost:8080/api/v1/register'
-    // 'https://cscloud8-44.lnu.se/shift/api/v1/auth/register'
-
-    const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    })
+    const response = await backendFetch('auth/register', 'POST', body, true)
 
     if (response.status === 201) {
-      navigate('/login')
+      setTimeout(() => {
+        navigate('/login')
+      }, 2500
+      )
+      setRegisterSuccess(true)
     } else {
       setRegisterFailed(true)
     }
@@ -61,7 +57,7 @@ const RegisterForm = () => {
       <input type="email" value={email} className={styles.input} onChange={(e) => setEmail(e.target.value)} required />
 
       {registerFailed && <FlashMessage message={'Register failed, please check that all inputs are filled in'} show={true}></FlashMessage>}
-
+      {registerSuccess && <FlashMessage message={'You have been registered successfully, login and start shifting.'} show={true}></FlashMessage>}
       <button className={styles.button}>Submit</button>
 
     </form>

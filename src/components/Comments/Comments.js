@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { getAccessToken, getLoggedInUserName } from '../../utils/auth'
+import { getLoggedInUserName } from '../../utils/auth'
+import { backendFetch } from '../../utils/utils'
 import styles from './style.module.css'
 import Comment from '../../components/Comment/Comment'
 
@@ -9,7 +10,7 @@ import Comment from '../../components/Comment/Comment'
  * @type {object} props
  * @returns {React.ReactElement} The housepage.
  */
-const Comments = ({ id, conversations, house }) => {
+const Comments = ({ id, conversations, house, refetch }) => {
   const [openConversation, setOpenConversation] = useState()
   const [message, setMessage] = useState('')
 
@@ -26,15 +27,9 @@ const Comments = ({ id, conversations, house }) => {
     }
     // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`
     // `http://localhost:8081/api/v1/houses/${id}/comment`
-    await fetch(`https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${getAccessToken()}`
-      },
-      body: JSON.stringify(commentBody)
-    })
+    await backendFetch(`houses/${id}/comment`, 'POST', commentBody)
     setMessage('')
+    await refetch()
   }
 
   return (
@@ -44,12 +39,12 @@ const Comments = ({ id, conversations, house }) => {
         <div key={conversationId} className={styles.commentsDiv} >
           {conversations[conversationId].map((comment, index) => (
             <div key={index}>
-              {comment.username === getLoggedInUserName() ? <Comment color='#609e71' comment={comment} house={house}></Comment> : <Comments color='#389674' comment={comment} house={house}></Comments>}
+              {comment.username === getLoggedInUserName() ? <Comment color='#609e71' comment={comment} house={house}></Comment> : <Comment color='#389674' comment={comment} house={house}></Comment>}
             </div>
           ))}
           <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
           <button onClick={() => reply(conversationId, message)}>Send message</button>
-          <button onClick={() => setOpenConversation('')}>Close conversation</button>
+          <button onClick={() => setOpenConversation('')}>Close</button>
         </div>
           )
         : (

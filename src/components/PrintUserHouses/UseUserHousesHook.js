@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { getAccessToken, getLoggedInUserName } from '../../utils/auth'
+import { getLoggedInUserName } from '../../utils/auth'
+import { backendFetch } from '../../utils/utils'
 
 /**
  * A component that prints all Userhouses.
@@ -12,7 +13,6 @@ const useUserHouses = () => {
   const [userName, setUsername] = useState('')
 
   useEffect(() => {
-    const accessToken = getAccessToken()
     setUsername(getLoggedInUserName())
 
     // 'https://cscloud8-44.lnu.se/shift/api/v1/houses'
@@ -22,12 +22,7 @@ const useUserHouses = () => {
      * Fetches all userhouses from api.
      */
     const fetcher = async () => {
-      const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/houses', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
-      })
+      const response = await backendFetch('houses', 'GET')
 
       if (response.status === 200) {
         const houses = await response.json()

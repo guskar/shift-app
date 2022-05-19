@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react'
-import { getAccessToken, getLoggedInUserName } from '../../utils/auth'
+import { getLoggedInUserName } from '../../utils/auth'
 import { useIsLoggedIn } from '../../utils/utilhooks'
+import { backendFetch } from '../../utils/utils'
 import HouseCard from '../HouseCard/HouseCard'
 import styles from './style.module.css'
 /**
@@ -16,7 +17,6 @@ const PrintHouses = () => {
   const isLoggedIn = useIsLoggedIn()
 
   useEffect(() => {
-    const accessToken = getAccessToken()
     // 'https://cscloud8-44.lnu.se/shift/api/v1/houses'
     // 'http://localhost:8081/api/v1/houses'
 
@@ -24,12 +24,7 @@ const PrintHouses = () => {
      * Fetches the houses from api.
      */
     const fetcher = async () => {
-      const response = await fetch('https://cscloud8-44.lnu.se/shift/api/v1/houses', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
-      })
+      const response = await backendFetch('houses', 'GET')
 
       if (response.status === 200) {
         const houses = await response.json()
@@ -42,7 +37,8 @@ const PrintHouses = () => {
   }, [isLoggedIn])
 
   useEffect(() => {
-    const filtered = allHouses.filter((house) => house.location.toLowerCase().indexOf(searchFor.toLowerCase()) !== -1)
+    const userName = getLoggedInUserName()
+    const filtered = allHouses.filter((house) => house.owner !== userName).filter((house) => house.location.toLowerCase().indexOf(searchFor.toLowerCase()) !== -1)
     setFilteredHouses(filtered)
   }, [allHouses, searchFor])
 
@@ -52,7 +48,7 @@ const PrintHouses = () => {
       <div className={styles.houseDiv} >
         {filteredHouses.map((house) => (
           <div key={house.id}>
-            {house.owner !== getLoggedInUserName() && <HouseCard house={house}></HouseCard>}
+            <HouseCard house={house}></HouseCard>
           </div>
         ))}
       </div>
