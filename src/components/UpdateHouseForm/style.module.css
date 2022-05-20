@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   min-width: fit-content;
+  margin: 1rem;
   
 }
 .formDiv label{
@@ -21,8 +22,8 @@
 .formDiv button{
   border-radius: 500px;
   border: none;
-  width: 20%;
-  margin: 2rem;
+  width: 50%;
+  margin:1rem 0;
   background-color: #609e71;
   height: 40px;
   color: lightgray;

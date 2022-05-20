@@ -18,7 +18,6 @@ const Map = ({ location }) => {
      * Fetches the google api to set long and lat on current house showing a map with its position.
      */
     const fetcher = async () => {
-      console.log('location', location)
       const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location},Sweden,+CA&key=${process.env.REACT_APP_NEXT_PUBLIC_API_KEY}`, {
         method: 'GET'
       })

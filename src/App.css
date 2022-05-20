@@ -5,7 +5,9 @@
     grid-template-columns: 1fr;
   }
 }
-
+body{
+  margin:0 1rem;
+}
 a {
   text-decoration: none;
   color: rgb(44, 42, 42);

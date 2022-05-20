@@ -3,6 +3,7 @@ import { getLoggedInUserName } from '../../utils/auth'
 import { backendFetch } from '../../utils/utils'
 import styles from './style.module.css'
 import Comment from '../../components/Comment/Comment'
+import FlashMessage from '../FlashMessage/FlashMessage'
 
 /**
  * A route for rendering the house page.
@@ -13,6 +14,7 @@ import Comment from '../../components/Comment/Comment'
 const Comments = ({ id, conversations, house, refetch }) => {
   const [openConversation, setOpenConversation] = useState()
   const [message, setMessage] = useState('')
+  const [sendMessageFailed, setSendMessageFailed] = useState(false)
 
   /**
    * Makes a post request to resource api for adding a reply to a comment.
@@ -27,8 +29,13 @@ const Comments = ({ id, conversations, house, refetch }) => {
     }
     // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`
     // `http://localhost:8081/api/v1/houses/${id}/comment`
-    await backendFetch(`houses/${id}/comment`, 'POST', commentBody)
-    setMessage('')
+    const response = await backendFetch(`houses/${id}/comment`, 'POST', commentBody)
+    if (response.status === 201) {
+      setMessage('')
+    } else {
+      setSendMessageFailed(true)
+    }
+
     await refetch()
   }
 
@@ -39,10 +46,10 @@ const Comments = ({ id, conversations, house, refetch }) => {
         <div key={conversationId} className={styles.commentsDiv} >
           {conversations[conversationId].map((comment, index) => (
             <div key={index}>
-              {comment.username === getLoggedInUserName() ? <Comment color='#609e71' comment={comment} house={house}></Comment> : <Comment color='#389674' comment={comment} house={house}></Comment>}
+              {comment.username === getLoggedInUserName() ? <Comment color='#609e71' comment={comment} house={house}></Comment> : <Comment color='#497069' comment={comment} house={house}></Comment>}
             </div>
           ))}
-          <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
+          <textarea rows='10' value={message} onChange={(e) => setMessage(e.target.value)} required></textarea>
           <button onClick={() => reply(conversationId, message)}>Send message</button>
           <button onClick={() => setOpenConversation('')}>Close</button>
         </div>
@@ -50,6 +57,7 @@ const Comments = ({ id, conversations, house, refetch }) => {
         : (
         <div key={conversationId} className={styles.commentsDiv}>
           <button onClick={() => setOpenConversation(conversationId)}>{conversationId}</button>
+          {sendMessageFailed && <FlashMessage message={'Something went wrong trying to comment on this house.'} show={true}></FlashMessage>}
         </div>
           )
     ))

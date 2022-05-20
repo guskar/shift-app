@@ -4,27 +4,17 @@
   display:flex;
   flex-direction: row;
   justify-content:flex-end;
-  gap: 10px;
+  gap: 0.6rem;
   align-items: center;
   padding: 1rem;
   position: sticky;
   top: 0;
   background-color: white;
- 
 }
-.navbarScroll{
-  border-bottom: 1px solid lightgrey;
-  height: 50px;
-  display:flex;
-  flex-direction: row;
-  justify-content:flex-end;
-  gap: 10px;
-  align-items: center;
+
+.link{
+  border-right: 1px solid lightgrey;
   padding: 1rem;
-  position: sticky;
-  top: 0;
-  background-color: white;
-  opacity: 50%;
 }
 
 .h1{

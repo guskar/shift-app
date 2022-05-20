@@ -11,7 +11,7 @@ const Comments = ({ comment, color }) => {
   return (
     <div style={{ backgroundColor: color }} className={styles.commentDiv}>
        <h4>{comment.username === getLoggedInUserName() ? 'You' : comment.username}</h4>
-       <h5>{comment.comment}</h5>
+       <pre><h5>{comment.comment}</h5></pre>
     </div>
   )
 }

@@ -23,6 +23,8 @@ const House = () => {
   const [dateFrom, setDateFrom] = useState('')
   const [dateTo, setDateTo] = useState('')
   const [houseDeleted, setHouseDeleted] = useState(false)
+  const [requestFailed, setRequestFailed] = useState(false)
+  const [requestSuccess, setRequesSuccess] = useState(false)
 
   const {
     id
@@ -46,7 +48,13 @@ const House = () => {
 
     // `https://cscloud8-44.lnu.se/shift/api/v1/houses/${id}/comment`
     // `http://localhost:8081/api/v1/houses/${id}/comment`
-    await backendFetch(`houses/${id}/comment`, 'POST', commentBody)
+    const response = await backendFetch(`houses/${id}/comment`, 'POST', commentBody)
+
+    if (response.status === 201) {
+      setRequesSuccess(true)
+    } else {
+      setRequestFailed(true)
+    }
     await refetch()
   }
 
@@ -135,6 +143,9 @@ const House = () => {
         {showEditHouse && <button onClick={() => setShowEditHouse(!showEditHouse)}>Close</button>}
       </div>
       {houseDeleted && <FlashMessage message={'House has been deleted successfully'} show={true} type={'success'}></FlashMessage>}
+      {requestSuccess && <FlashMessage message={'A request has been made successfully'} show={true} type={'success'}></FlashMessage>}
+      {requestFailed && <FlashMessage message={'The request failed.'} show={true} type={'success'}></FlashMessage>}
+
       <Comments id={id} conversations={conversations} house={house} refetch={refetch} />
     </div>
   )
