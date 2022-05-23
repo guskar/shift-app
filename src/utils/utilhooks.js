@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { getAccessToken } from './auth'
 import { backendFetch } from './utils'
 
@@ -13,7 +13,14 @@ export const useIsLoggedIn = () => {
 
   return accessToken !== null
 }
-
+export const scrollToRef =
+/**
+ * Scroll to ref.
+ *
+ * @param {React.ReactElement} ref The ref
+ * @returns {Function} The function.
+ */
+(ref) => window.scrollTo(0, ref.current.offsetTop)
 /**
  * A function that returns a house and its conversations (comments).
  *

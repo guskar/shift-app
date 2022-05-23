@@ -3,8 +3,15 @@
   padding: 1rem;
   border-radius: 10px;
   color: lightgrey;
+  width: 100%;
 }
 
 .commentDiv h4, h5{
   margin: 0.4rem;
+}
+
+@media only screen and (max-width: 500px) {
+  .commentDiv{
+    width: 100vw;
+  }
 }

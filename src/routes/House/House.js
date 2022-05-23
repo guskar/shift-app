@@ -102,7 +102,7 @@ const House = () => {
         <div>
           <h1>{house.location}</h1>
           <pre><p>{house.description}</p></pre>
-          <h2>{house.owner}</h2>
+          <h2>Houseowner: {house.owner}</h2>
           <div className={styles.iconsDiv}>
             {house.pool ? <MdPool className={styles.icons}></MdPool> : null}
             {house.wifi ? <MdWifi className={styles.icons}></MdWifi> : null}
@@ -138,7 +138,7 @@ const House = () => {
           </div>
         }
       </div>
-      <div>
+      <div className={styles.formDiv}>
         {showEditHouse && <UpdateHouseForm house={house}></UpdateHouseForm>}
         {showEditHouse && <button onClick={() => setShowEditHouse(!showEditHouse)}>Close</button>}
       </div>

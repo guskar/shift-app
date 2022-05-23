@@ -19,11 +19,12 @@
   padding: 5px;
 }
 
-.formDiv button{
+.Btn{
   border-radius: 500px;
   border: none;
   width: 50%;
-  margin:1rem 0;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #609e71;
   height: 40px;
   color: lightgray;

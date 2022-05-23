@@ -130,7 +130,7 @@ function UpdateHouseForm ({ house }) {
       {updateHouseFailed && <FlashMessage message={'Edit house failed, please check that all inputs are filled in'} show={true} type={'error'}></FlashMessage>}
       {updateHouseSuccess && <FlashMessage message={'The house was updated successfully'} show={true} type={'error'}></FlashMessage>}
 
-      <button>Submit</button>
+      <button className={styles.Btn}>Submit</button>
 
       </form>
 

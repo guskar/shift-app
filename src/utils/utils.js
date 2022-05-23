@@ -3,7 +3,7 @@ import { getAccessToken } from './auth'
 /**
  * A function that simplifies fetching data from/to the backend.
  *
- * @type {string} the endpoint to POST
+ * @type {string} The endpoint to POST
  * @returns {string} The accesstoken.
  */
 export const backendFetch = async (endpoint, method, data, omitAccessToken) => {
