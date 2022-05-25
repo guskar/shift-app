@@ -15,9 +15,9 @@ const Home = () => {
       <div id='backgroundDiv'>
         <h1>Sh<BsShift></BsShift>fT - Make a change today</h1>
       </div>
-      <div className={styles.registerDiv}>
+      <div className={styles.footerDiv}>
         <h2>Register now and start shifting!</h2>
-        <h5>Get access to all houses!</h5>
+        <h5>Get access to all houses today!</h5>
         <button className={styles.button} onClick={() => navigate('register')}>Register</button>
       </div>
 

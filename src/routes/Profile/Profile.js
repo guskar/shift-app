@@ -11,8 +11,10 @@ import styles from './style.module.css'
 const Profile = () => {
   const isLoggedIn = useIsLoggedIn()
   return (
-    <div className={styles.allHousesDiv}>
-      {isLoggedIn && <PrintHouses></PrintHouses>}
+    <div>
+      <div className={styles.allHousesDiv}>
+        {isLoggedIn && <PrintHouses></PrintHouses>}
+      </div>
     </div>
   )
 }

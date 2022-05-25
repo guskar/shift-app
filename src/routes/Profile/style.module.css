@@ -4,9 +4,11 @@
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px) {
   .profileDiv{
-    grid-template-columns: 1fr;
-    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
   }
 }

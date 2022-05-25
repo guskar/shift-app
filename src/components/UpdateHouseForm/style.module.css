@@ -48,3 +48,7 @@
   resize: none;
 
 }
+
+.formDiv button{
+  width: 100%;
+}

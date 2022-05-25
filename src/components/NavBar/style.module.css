@@ -19,7 +19,7 @@
 }
 
 .h1{
-margin-right: auto; 
+  margin-right: auto; 
 }
 
 .username{
@@ -27,4 +27,17 @@ margin-right: auto;
   color: white;
   border-radius: 500px;
   padding: 0.8rem;
+}
+
+@media only screen and (max-width: 500px) {
+  .navbar{
+   flex-direction: column;
+   height: auto;
+  
+  }
+  .link{
+    border-bottom: 1px solid lightgrey;
+    border-right: none;
+    padding: 0;
+  }
 }

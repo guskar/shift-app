@@ -1,12 +1,13 @@
 .specificHouseDiv{
   display: grid;
+  grid-template-columns: 1fr;
   
 }
 
 .specificHouseDiv button{
   border-radius: 500px;
   border: none;
-  width: 25%;
+  width: 50%;
   background-color: #609e71;
   height: 40px;
   color: white;
@@ -72,6 +73,7 @@
 
 .closeBtn{
   margin: 0.8rem;
+  width: 100%;
 }
 .iconsDiv{
   display: flex;
@@ -90,6 +92,8 @@
 @media only screen and (max-width: 600px) {
   .specificHouseDiv{
     grid-template-columns: 1fr;
+    justify-items: center;
+    
   }
   .infoDiv{
     grid-template-columns: 1fr;

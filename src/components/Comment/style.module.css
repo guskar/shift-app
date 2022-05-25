@@ -12,6 +12,6 @@
 
 @media only screen and (max-width: 500px) {
   .commentDiv{
-    width: 100vw;
+    width: 100%;
   }
 }

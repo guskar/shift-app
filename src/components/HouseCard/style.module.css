@@ -1,5 +1,5 @@
 .houseCard{
-  width: 250px;
+  width: 200px;
   height: 300px;
   padding: 5px;
   border-radius: 5px;
@@ -37,13 +37,16 @@
 }
 
 .button:hover{
-  cursor:pointer;
+  cursor: pointer;
   box-shadow: 5px 5px 11px -2px #000000;
  
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
   .houseCard{
-    width: 90vw;
+    width: 80vw;
+  }
+  .button:hover{
+    box-shadow: none;
   }
 }
