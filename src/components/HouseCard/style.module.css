@@ -33,10 +33,17 @@
   border: none;
   border-radius: 5px;
   background-color: #f5f3ed;
+  color: black;
 }
 
 .button:hover{
   cursor:pointer;
   box-shadow: 5px 5px 11px -2px #000000;
  
+}
+
+@media only screen and (max-width: 400px) {
+  .houseCard{
+    width: 90vw;
+  }
 }

@@ -10,7 +10,15 @@
   margin: 2rem;
   background-color: #609e71;
   height: 40px;
-  color: lightgray;
+  color: white;
 
+}
+
+@media only screen and (max-width: 400px) {
+  .houseDiv{
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100vw;
+  }
 }
 

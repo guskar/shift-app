@@ -68,7 +68,7 @@ function UpdateHouseForm ({ house }) {
     if (response.status === 204) {
       setTimeout(() => {
         navigate('/userhouses')
-      }, 2500
+      }, 2000
       )
       setUpdateHouseSuccess(true)
     } else {

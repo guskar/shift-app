@@ -140,7 +140,7 @@ const House = () => {
       </div>
       <div className={styles.formDiv}>
         {showEditHouse && <UpdateHouseForm house={house}></UpdateHouseForm>}
-        {showEditHouse && <button onClick={() => setShowEditHouse(!showEditHouse)}>Close</button>}
+        {showEditHouse && <button className={styles.closeBtn} onClick={() => setShowEditHouse(!showEditHouse)}>Close</button>}
       </div>
       {houseDeleted && <FlashMessage message={'House has been deleted successfully'} show={true} type={'success'}></FlashMessage>}
       {requestSuccess && <FlashMessage message={'A request has been made successfully'} show={true} type={'success'}></FlashMessage>}

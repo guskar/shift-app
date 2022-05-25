@@ -7,10 +7,9 @@
   border-radius: 500px;
   border: none;
   width: 25%;
-  margin: 1rem;
   background-color: #609e71;
   height: 40px;
-  color: lightgray;
+  color: white;
 
 }
 
@@ -48,6 +47,7 @@
 
 .buttonsDiv button{
   width: 100%;
+  margin: 1rem;
  
 }
 
@@ -69,10 +69,10 @@
   width: 50%;
   box-shadow: 5px 5px 11px -2px #000000;
 }
-.formDiv button{
-  width: 55%;
-}
 
+.closeBtn{
+  margin: 0.8rem;
+}
 .iconsDiv{
   display: flex;
   flex-direction: row;

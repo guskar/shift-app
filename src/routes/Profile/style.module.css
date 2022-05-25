@@ -7,5 +7,6 @@
 @media only screen and (max-width: 600px) {
   .profileDiv{
     grid-template-columns: 1fr;
+    width: 100vw;
   }
 }
