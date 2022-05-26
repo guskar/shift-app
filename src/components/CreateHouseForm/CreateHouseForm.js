@@ -101,7 +101,7 @@ const CreateHouseForm = () => {
       {createHouseFailed && <FlashMessage message={'Add house failed, please check that all inputs are filled in'} show={true} type={'error'}></FlashMessage>}
       {createHouseSuccess && <FlashMessage message={'The house was added successfully'} show={true} type={'error'}></FlashMessage>}
 
-      <button>Submit</button>
+      <button>Create house</button>
 
     </form>
   )

@@ -101,4 +101,17 @@
   .formDiv{
     width: 85%;
   }
+
+  .icons{
+    font-size: 25px;
+  }
+
+  .text{
+    font-size: 15px;
+  }
+
+  .iconsDiv{
+    justify-content:space-evenly;
+    gap: 6px;
+  }
 }

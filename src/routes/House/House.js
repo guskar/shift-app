@@ -145,7 +145,7 @@ const House = () => {
       {houseDeleted && <FlashMessage message={'House has been deleted successfully'} show={true} type={'success'}></FlashMessage>}
       {requestSuccess && <FlashMessage message={'A request has been made successfully'} show={true} type={'success'}></FlashMessage>}
       {requestFailed && <FlashMessage message={'The request failed.'} show={true} type={'success'}></FlashMessage>}
-      <h4>Conversations</h4>
+      {requestMade && <h4>Conversations</h4>}
       <Comments id={id} conversations={conversations} house={house} refetch={refetch} />
     </div>
   )
