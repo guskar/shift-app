@@ -1,17 +1,11 @@
 .commentDiv{
-  margin: 0.3rem;
   padding: 1rem;
   border-radius: 10px;
   color: white;
-  width: 100%;
+ 
 }
 
 .commentDiv h4, h5{
-  margin: 0.4rem;
+  margin: 0.3rem;
 }
 
-@media only screen and (max-width: 500px) {
-  .commentDiv{
-    width: 100%;
-  }
-}

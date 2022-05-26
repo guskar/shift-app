@@ -115,37 +115,37 @@ const House = () => {
         </div>
         {isUsersHouse
           ? <div className={styles.buttonsDiv}>
-              <button onClick={deleteHouse}>
-                Delete house
-              </button>
-              <button onClick={toggleEditingHouse}>
-                Edit house
-              </button>
-            </div>
+            <button onClick={deleteHouse}>
+              Delete house
+            </button>
+            <button onClick={toggleEditingHouse}>
+              Edit house
+            </button>
+          </div>
           : <div className={styles.infoDivInner}>
-              <Map location={house.location}></Map>
-              {!requestMade &&
-                <div className={styles.buttonsDiv}>
-                  <label>From</label>
-                  <input type='date' onChange={(e) => setDateFrom(e.target.value)} />
-                  <label>To</label>
-                  <input type='date' onChange={(e) => setDateTo(e.target.value)} />
-                  <button onClick={makeRequest}>
-                    Make request
-                  </button>
-                </div>
-              }
+            <Map location={house.location}></Map>
+            {!requestMade &&
+              <div className={styles.buttonsDiv}>
+                <label>From</label>
+                <input type='date' onChange={(e) => setDateFrom(e.target.value)} />
+                <label>To</label>
+                <input type='date' onChange={(e) => setDateTo(e.target.value)} />
+                <button onClick={makeRequest}>
+                  Make request
+                </button>
+              </div>
+            }
           </div>
         }
       </div>
       <div className={styles.formDiv}>
         {showEditHouse && <UpdateHouseForm house={house}></UpdateHouseForm>}
-        {showEditHouse && <button className={styles.closeBtn} onClick={() => setShowEditHouse(!showEditHouse)}>Close</button>}
+        {showEditHouse && <button className={styles.closeBtn} onClick={() => setShowEditHouse(!showEditHouse)}>X</button>}
       </div>
       {houseDeleted && <FlashMessage message={'House has been deleted successfully'} show={true} type={'success'}></FlashMessage>}
       {requestSuccess && <FlashMessage message={'A request has been made successfully'} show={true} type={'success'}></FlashMessage>}
       {requestFailed && <FlashMessage message={'The request failed.'} show={true} type={'success'}></FlashMessage>}
-
+      <h4>Conversations</h4>
       <Comments id={id} conversations={conversations} house={house} refetch={refetch} />
     </div>
   )

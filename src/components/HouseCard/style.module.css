@@ -1,5 +1,5 @@
 .houseCard{
-  width: 200px;
+  width: 225px;
   height: 300px;
   padding: 5px;
   border-radius: 5px;
@@ -42,7 +42,7 @@
  
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 450px) {
   .houseCard{
     width: 80vw;
   }

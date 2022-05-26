@@ -67,13 +67,12 @@
   margin-left: auto;
   margin-right: auto;
   background-color: white;
-  width: 50%;
+  width: 65%;
   box-shadow: 5px 5px 11px -2px #000000;
 }
 
 .closeBtn{
   margin: 0.8rem;
-  width: 100%;
 }
 .iconsDiv{
   display: flex;
@@ -97,5 +96,9 @@
   }
   .infoDiv{
     grid-template-columns: 1fr;
+  }
+
+  .formDiv{
+    width: 85%;
   }
 }
