@@ -11,8 +11,8 @@ const Home = () => {
   const navigate = useNavigate()
   return (
 
-    <div id='houseDiv'>
-      <div id='backgroundDiv'>
+    <div className={styles.houseDiv}>
+      <div className={styles.backgroundDiv}>
         <h1>Sh<BsShift></BsShift>fT - Make a change today</h1>
       </div>
       <div className={styles.footerDiv}>

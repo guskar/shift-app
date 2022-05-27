@@ -9,7 +9,7 @@ import FlashMessage from '../FlashMessage/FlashMessage'
  * @returns {React.ReactElement} The PrintUserHouses component.
  */
 const PrintUserHouses = () => {
-  const { filteredHouses } = useUserHouses(null)
+  const { filteredHouses } = useUserHouses([])
   const noHousesToDisplay = filteredHouses.length === 0
 
   return (
