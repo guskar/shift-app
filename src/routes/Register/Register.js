@@ -1,5 +1,6 @@
 import React from 'react'
 import RegisterForm from '../../components/RegisterForm/RegisterForm'
+import styles from './style.module.css'
 
 /**
  * A route for register.
@@ -8,7 +9,9 @@ import RegisterForm from '../../components/RegisterForm/RegisterForm'
  */
 const Register = () => {
   return (
-   <RegisterForm></RegisterForm>
+    <div className={styles.registerDiv}>
+      <RegisterForm></RegisterForm>
+   </div>
   )
 }
 

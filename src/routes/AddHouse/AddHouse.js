@@ -1,5 +1,7 @@
+
 import React from 'react'
 import CreateHouseForm from '../../components/CreateHouseForm/CreateHouseForm'
+import styles from './style.module.css'
 /**
  * A Route component for adding a house.
  *
@@ -7,7 +9,9 @@ import CreateHouseForm from '../../components/CreateHouseForm/CreateHouseForm'
  */
 const AddHouse = () => {
   return (
-    <div><CreateHouseForm></CreateHouseForm></div>
+    <div className={styles.addHouseDiv}>
+      <CreateHouseForm></CreateHouseForm>
+    </div>
   )
 }
 

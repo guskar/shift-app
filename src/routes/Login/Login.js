@@ -1,5 +1,7 @@
+
 import React from 'react'
 import LoginForm from '../../components/LoginForm/LoginForm'
+import styles from './style.module.css'
 
 /**
  * A route for Login.
@@ -8,7 +10,9 @@ import LoginForm from '../../components/LoginForm/LoginForm'
  */
 const Login = () => {
   return (
-   <LoginForm></LoginForm>
+    <div className={styles.loginDiv}>
+      <LoginForm></LoginForm>
+    </div>
   )
 }
 
