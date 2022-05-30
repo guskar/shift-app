@@ -19,16 +19,6 @@
   padding: 5px;
 }
 
-.Btn{
-  border-radius: 500px;
-  border: none;
-  width: 50%;
-  background-color: #609e71;
-  height: 40px;
-  color: lightgray;
-
-}
-
 .formDiv textarea{
   width: 90%;
   border: 2px solid lightgray;
@@ -49,6 +39,15 @@
 
 }
 
-.formDiv button{
-  width: 100%;
+.Btn{
+  width: 30%;
+ 
+  margin-left: 0;
+}
+
+@media only screen and (max-width: 500px) {
+  
+  .formDiv button{
+    width: 100%;
+  }
 }

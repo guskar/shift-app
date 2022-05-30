@@ -4,6 +4,7 @@
   justify-content: flex-start;
   min-width: fit-content;
   margin-left: 1rem;
+  width: 60%;
   
 }
 .formDiv label{
@@ -22,7 +23,7 @@
 .formDiv button{
   border-radius: 500px;
   border: none;
-  width: 100%;
+  width: 30%;
   margin: 1rem 0;
   background-color: #609e71;
   height: 40px;
@@ -47,4 +48,13 @@
   padding: 5px;
   resize: none;
 
+}
+
+@media only screen and (max-width: 500px) {
+  .formDiv{
+    width: 100%
+  }
+  .formDiv button{
+    width: 90%;
+  }
 }

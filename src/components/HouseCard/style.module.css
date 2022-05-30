@@ -45,8 +45,14 @@
 @media only screen and (max-width: 450px) {
   .houseCard{
     width: 80vw;
+    align-items: center;
   }
   .button:hover{
     box-shadow: none;
   }
+
+  .img{
+    width: 90%;
+  }
+  
 }

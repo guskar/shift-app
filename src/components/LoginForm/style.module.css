@@ -4,6 +4,7 @@
   justify-content: center;
   min-width: fit-content;
   margin-left: 1rem;
+  width: 60%;
  
 }
 
@@ -23,7 +24,7 @@
 .loginForm button{
   border-radius: 500px;
   border: none;
-  width: 20%;
+  width: 30%;
   margin: 2rem;
   background-color: #609e71;
   height: 40px;
@@ -32,6 +33,9 @@
 }
 
 @media only screen and (max-width: 500px) {
+  .loginForm{
+    width: 100%
+  }
   .loginForm button{
     width: 80%;
   }

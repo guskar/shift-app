@@ -71,9 +71,15 @@
   box-shadow: 5px 5px 11px -2px #000000;
 }
 
-.closeBtn{
-  margin: 0.8rem;
+.formDiv button{
+  width: 50%;
+ 
 }
+
+.closeButton{
+  margin: 0.7rem;
+}
+
 .iconsDiv{
   display: flex;
   flex-direction: row;
@@ -94,12 +100,19 @@
     justify-items: center;
     
   }
+
+  .specificHouseDiv button{
+    width: 100%;
+  }
   .infoDiv{
     grid-template-columns: 1fr;
   }
 
   .formDiv{
     width: 85%;
+  }
+  .formDiv button{
+    width: 80%;
   }
 
   .icons{
