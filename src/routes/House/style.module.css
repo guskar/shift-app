@@ -127,4 +127,8 @@
     justify-content:space-evenly;
     gap: 6px;
   }
+
+  .commentsDiv button{
+    width: 100%;
+  }
 }
