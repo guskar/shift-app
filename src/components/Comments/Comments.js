@@ -4,6 +4,8 @@ import { backendFetch } from '../../utils/utils'
 import styles from './style.module.css'
 import Comment from '../../components/Comment/Comment'
 import FlashMessage from '../FlashMessage/FlashMessage'
+import { RiMailSendLine } from 'react-icons/ri'
+import { AiOutlineCloseCircle } from 'react-icons/ai'
 
 /**
  * A route for rendering the house page.
@@ -50,8 +52,8 @@ const Comments = ({ id, conversations, house, refetch }) => {
             </div>
           ))}
           <textarea rows='10' value={message} onChange={(e) => setMessage(e.target.value)} required></textarea>
-          <button onClick={() => reply(conversationId, message)}>Send message</button>
-          <button onClick={() => setOpenConversation('')}>Close</button>
+          <button onClick={() => reply(conversationId, message)}><RiMailSendLine className={styles.sendIcon}></RiMailSendLine></button>
+          <button onClick={() => setOpenConversation('')}><AiOutlineCloseCircle className={styles.sendIcon}></AiOutlineCloseCircle></button>
         </div>
           )
         : (

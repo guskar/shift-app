@@ -72,12 +72,13 @@
 }
 
 .formDiv button{
-  width: 50%;
+  width: 30%;
  
 }
 
 .closeButton{
   margin: 0.7rem;
+ 
 }
 
 .iconsDiv{
@@ -88,6 +89,10 @@
 
 .icons{
   font-size: 50px;
+}
+
+.smallIcons{
+  font-size: 20px;
 }
 
 .text{
@@ -126,6 +131,10 @@
   .iconsDiv{
     justify-content:space-evenly;
     gap: 6px;
+  }
+
+  .commentsDiv button{
+    width: 100%;
   }
   
 }

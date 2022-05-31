@@ -4,9 +4,10 @@ import { getAccessToken, getLoggedInUserName } from '../../utils/auth'
 import styles from './style.module.css'
 import Comments from '../../components/Comments/Comments'
 import UpdateHouseForm from '../../components/UpdateHouseForm/UpdateHouseForm'
-import { MdPool, MdWifi, MdBed } from 'react-icons/md'
+import { MdPool, MdWifi, MdBed, MdEdit } from 'react-icons/md'
 import { FiMonitor } from 'react-icons/fi'
-import { FaWheelchair } from 'react-icons/fa'
+import { FaWheelchair, FaTrashAlt } from 'react-icons/fa'
+import { AiOutlineCloseCircle } from 'react-icons/ai'
 import Map from '../../components/Map/Map'
 import FlashMessage from '../../components/FlashMessage/FlashMessage'
 import { useHouse } from '../../utils/utilhooks'
@@ -116,10 +117,10 @@ const House = () => {
         {isUsersHouse
           ? <div className={styles.buttonsDiv}>
             <button onClick={deleteHouse}>
-              Delete house
+             <FaTrashAlt className={styles.smallIcons}></FaTrashAlt>
             </button>
             <button onClick={toggleEditingHouse}>
-              Edit house
+            <MdEdit className={styles.smallIcons}></MdEdit>
             </button>
           </div>
           : <div className={styles.infoDivInner}>
@@ -140,7 +141,7 @@ const House = () => {
       </div>
       <div className={styles.formDiv}>
         {showEditHouse && <UpdateHouseForm house={house}></UpdateHouseForm>}
-        {showEditHouse && <button className={styles.closeButton} onClick={() => setShowEditHouse(!showEditHouse)}>Close</button>}
+        {showEditHouse && <button className={styles.closeButton} onClick={() => setShowEditHouse(!showEditHouse)}><AiOutlineCloseCircle className={styles.smallIcons}></AiOutlineCloseCircle></button>}
       </div>
       {houseDeleted && <FlashMessage message={'House has been deleted successfully'} show={true} type={'success'}></FlashMessage>}
       {requestSuccess && <FlashMessage message={'A request has been made successfully'} show={true} type={'success'}></FlashMessage>}

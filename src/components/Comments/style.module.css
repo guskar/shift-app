@@ -11,7 +11,7 @@
 
 .commentsDiv button{
   border-radius: 500px;
-  width: 50%;
+  width: 25%;
   border: none;
   padding: 1rem;
   background-color: #609e71;
@@ -29,8 +29,17 @@
 
 }
 
+.sendIcon{
+  font-size: 20px;
+ 
+}
+
 @media only screen and (max-width: 500px) {
   .commentsDiv{
+    width: 100%;
+  }
+
+  .commentsDiv button{
     width: 100%;
   }
 }
