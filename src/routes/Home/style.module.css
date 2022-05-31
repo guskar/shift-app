@@ -1,10 +1,9 @@
 
 .footerDiv{
   display: flex;
-  flex-direction: column;
-  width: 50%;
-  padding: 7px;
-  gap: 2rem;
+  flex-direction: row;
+  padding: 1rem;
+  gap: 1rem;
 }
 
 .footerDiv h2, h5{
@@ -13,12 +12,12 @@
 .button{
   border-radius: 500px;
   border: none;
-  width: 100%;
+  width: 50%;
   background-color: #609e71;
   color: white;
   font-size: 15px;
   margin: 0;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 .houseDiv{
   display: flex;
@@ -35,4 +34,14 @@
   background-size: cover;
   text-align: center;
   color: white;
+}
+
+@media only screen and (max-width: 500px) {
+  .footerDiv{
+    flex-direction: column;
+  }
+
+  .button{
+    width: 100%;
+  }
 }

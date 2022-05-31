@@ -14,8 +14,11 @@ button:hover{
   box-shadow: 7px 6px 14px -5px #AEAEAE;
 }
 
-@media only screen and (min-width: 800px) {
-  body{
-    margin: 0 2rem;
+
+
+@media only screen and (max-width: 500px) {
+  button:hover{
+    transform: none;
+    box-shadow: none;
   }
 }
