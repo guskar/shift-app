@@ -58,7 +58,7 @@ const RegisterForm = () => {
 
       {registerFailed && <FlashMessage message={'Register failed, please check that all inputs are filled in'} show={true}></FlashMessage>}
       {registerSuccess && <FlashMessage message={'You have been registered successfully, login and start shifting.'} show={true}></FlashMessage>}
-      <button className={styles.button}>Submit</button>
+      <button className={styles.button}>Register</button>
 
     </form>
   )

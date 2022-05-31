@@ -50,7 +50,7 @@ const LoginForm = () => {
       <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
 
       {loginFailed && <FlashMessage message={'Login failed, check your credentials'} show={true}></FlashMessage>}
-      <button>Submit</button>
+      <button>Login</button>
 
     </form>
   )
