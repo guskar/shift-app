@@ -38,6 +38,7 @@ a {
    flex-direction: column;
    height:20vh;
    gap: 0.3rem;
+   
   }
 
   .navbar h1{
