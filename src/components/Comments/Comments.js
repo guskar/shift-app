@@ -52,8 +52,8 @@ const Comments = ({ id, conversations, house, refetch }) => {
             </div>
           ))}
           <textarea rows='10' value={message} onChange={(e) => setMessage(e.target.value)} required></textarea>
-          <button onClick={() => reply(conversationId, message)}><RiMailSendLine className={styles.sendIcon}></RiMailSendLine></button>
-          <button onClick={() => setOpenConversation('')}><AiOutlineCloseCircle className={styles.sendIcon}></AiOutlineCloseCircle></button>
+          <button className={styles.sendCloseButton} onClick={() => reply(conversationId, message)}><RiMailSendLine className={styles.sendCloseIcon}></RiMailSendLine></button>
+          <button className={styles.sendCloseButton} onClick={() => setOpenConversation('')}><AiOutlineCloseCircle className={styles.sendCloseIcon}></AiOutlineCloseCircle></button>
         </div>
           )
         : (

@@ -19,7 +19,7 @@ import AddHouse from './routes/AddHouse/AddHouse'
 function App () {
   return (
     <div className="App">
-      <NavBar />
+      <NavBar/>
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="userhouses" element={<ManageHouses />}/>
