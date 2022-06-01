@@ -96,9 +96,9 @@ const House = () => {
 
   return (
     <div className={styles.specificHouseDiv}>
-      <div className={styles.imageDiv}>
-        <img src={house.imageUrl} alt='' className={styles.img} />
-      </div>
+
+        <img className={styles.image}src={house.imageUrl} alt='' />
+
       <div className={styles.infoDiv}>
         <div>
           <h1>{house.location}</h1>
