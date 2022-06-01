@@ -21,7 +21,6 @@
 
 .infoDivInner {
   display: flex;
-  margin-top: 0.5rem;
 }
 
 .imageDiv{
@@ -98,17 +97,19 @@
   font-size: 25px;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
   .specificHouseDiv{
     grid-template-columns: 1fr;
     justify-items:flex-start;
-   
+    
   }
 
   .specificHouseDiv button{
     width: 100%;
   }
-
+  .infoDiv{
+    grid-template-columns: 1fr;
+  }
 
   .formDiv{
     width: 85%;
@@ -133,6 +134,5 @@
   .commentsDiv button{
     width: 100%;
   }
-
   
 }
