@@ -9,6 +9,11 @@
 .footerDiv h2, h5{
   margin: 0;
 }
+
+.backgroundDiv h1{
+  margin: 1rem;
+}
+
 .button{
   border-radius: 500px;
   border: none;

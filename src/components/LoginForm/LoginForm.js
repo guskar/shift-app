@@ -43,11 +43,9 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit} className={styles.loginForm}>
 
-      <label>Username</label>
-      <input data-testid='username' type="text" value={username} onChange={(e) => setUsername(e.target.value)} required/>
+      <input data-testid='username' type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder= 'Username' required/>
 
-      <label>Password</label>
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder= 'Password' required/>
 
       {loginFailed && <FlashMessage message={'Login failed, check your credentials'} show={true}></FlashMessage>}
       <button>Login</button>

@@ -41,20 +41,16 @@ const RegisterForm = () => {
   }
   return (
     <form onSubmit={handleSubmit} className={styles.registerForm}>
-      <label>Username</label>
-      <input type="text" value={username} className={styles.input} onChange={(e) => setUsername(e.target.value)} required />
 
-      <label>Password</label>
-      <input type="password" value={password} className={styles.input} onChange={(e) => setPassword(e.target.value)} required />
+      <input type="text" value={username} className={styles.input} onChange={(e) => setUsername(e.target.value)} placeholder= 'Username' required />
 
-      <label>First name</label>
-      <input type="text" value={firstName} className={styles.input} onChange={(e) => setFirstName(e.target.value)} required />
+      <input type="password" value={password} className={styles.input} onChange={(e) => setPassword(e.target.value)} placeholder= 'Password' required />
 
-      <label>Last name</label>
-      <input type="text" value={lastName} className={styles.input} onChange={(e) => setLastName(e.target.value)} required />
+      <input type="text" value={firstName} className={styles.input} onChange={(e) => setFirstName(e.target.value)} placeholder= 'First name' required />
 
-      <label>email</label>
-      <input type="email" value={email} className={styles.input} onChange={(e) => setEmail(e.target.value)} required />
+      <input type="text" value={lastName} className={styles.input} onChange={(e) => setLastName(e.target.value)} placeholder= 'Last name' required />
+
+      <input type="email" value={email} className={styles.input} onChange={(e) => setEmail(e.target.value)} placeholder= 'email' required />
 
       {registerFailed && <FlashMessage message={'Register failed, please check that all inputs are filled in'} show={true}></FlashMessage>}
       {registerSuccess && <FlashMessage message={'You have been registered successfully, login and start shifting.'} show={true}></FlashMessage>}

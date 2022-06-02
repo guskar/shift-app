@@ -9,7 +9,7 @@
   border: none;
   width: 50%;
   background-color: #609e71;
-  height: 40px;
+  padding: 0.5rem;
   color: white;
 
 }
@@ -21,7 +21,8 @@
 
 .infoDivInner {
   display: flex;
-  margin-top: 1rem;
+  margin: 1rem;
+  gap: 1rem;
 }
 
 .imageDiv{
@@ -35,7 +36,7 @@
   width: 100%;
   border-radius: 5px; 
   margin-top: 1rem;
-  height: 60vh;
+  height: 65vh;
 }
 
 .buttonsDiv{
@@ -44,11 +45,10 @@
   flex-direction: column;
   align-items: center;
   margin-top: 1rem;
-  margin-left: 10px;
 }
 
 .buttonsDiv button{
-  width: 100%;
+  width: 50%;
   margin: 1rem;
  
 }
@@ -73,7 +73,8 @@
 }
 
 .formDiv button{
-  width: 30%;
+  width: 20%;
+  margin-top: 1rem;
  
 }
 

@@ -1,4 +1,5 @@
 .navbar {
+  width: 100%;
   border-bottom: 1px solid lightgrey;
   display:flex;
   flex-direction: row;
@@ -30,15 +31,16 @@ a {
   background-color: #609e71;
   color: white;
   border-radius: 500px;
-  padding: 0.8rem;
+  padding: 1rem;
 }
 
 @media only screen and (max-width: 500px) {
 
   .navbar{
    flex-direction: column;
-   height:20vh;
+   height: 17vh;
    gap: 0.3rem;
+   justify-content: center;
    
   }
 
